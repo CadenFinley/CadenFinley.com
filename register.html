@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Caden Finley</title>
+    <link rel="stylesheet" href="auth-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/cadenfinleylogo.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1><button onclick="window.location.href='home'" class="logo-button"><span class="letter-c">C</span><span class="letter-j">J</span></button></h1>
+    </header>
+    <main>
+        <section id="register">
+            <div class="container">
+                <h2>Create an Account</h2>
+                <form id="register-form" class="login-form" onsubmit="return validateForm()">
+                    <div class="form-group">
+                        <label for="new-username" class="form-label">Username:</label>
+                        <input type="text" id="new-username" name="username" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password" class="form-label">Password:</label>
+                        <input type="password" id="new-password" name="password" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password" class="form-label">Confirm Password:</label>
+                        <input type="password" id="confirm-password" name="confirm-password" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="form-button">Create Account</button>
+                    </div>
+                </form>
+                <p id="feedback-message"></p>
+                <p>Already have an account? <a href="login">Login here</a>.</p>
+            </div>
+        </section>
+    </main>
+    <div id="notification-container"></div>
+    <footer>
+        <p>&copy; 2025 Caden Finley</p>
+        <div class="about">
+            <p>Welcome to my personal website.</p>
+            <p>You can download my resume <a href="images/Caden_Finley_resume.pdf" target="_blank">here</a>.</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script src="accounthandler.js"></script>
+    <script>
+        document.getElementById('register-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const username = document.getElementById('new-username').value;
+            const password = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match.', true);
+                return;
+            }
+
+            const result = await AccountHandler.register(username, password);
+            showNotification(result.message, !result.success);
+        });
+
+        function validateForm() {
+        const password = document.getElementById('new-password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+        if (password !== confirmPassword) {
+            document.getElementById('feedback-message').style.display = 'block';
+            document.getElementById('feedback-message').innerText = 'Passwords do not match.';
+            return false;
+        }
+        return true;
+    }
+
+        function showNotification(message, isError = false) {
+            const notificationContainer = document.getElementById('notification-container');
+            const notification = document.createElement('div');
+            notification.className = `notification ${isError ? 'error' : 'success'}`;
+            notification.innerText = message;
+            notificationContainer.appendChild(notification);
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
