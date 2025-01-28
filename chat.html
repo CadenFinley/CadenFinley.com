@@ -7,6 +7,31 @@
     <link rel="stylesheet" href="auth-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="images/cadenfinleylogo.ico" type="image/x-icon">
+    <style>
+        .logo-button {
+            background: none;
+            border: 2px solid #ff6347; /* Outline color */
+            border-radius: 10px; /* Smooth corners */
+            padding: 0.5rem;
+            font-size: 2rem;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .logo-button .letter-c {
+            color: #ff6347; /* Tomato color */
+            margin-right: -0.2rem; /* Move letters closer */
+        }
+        .logo-button .letter-j {
+            color: #4682b4; /* SteelBlue color */
+        }
+        .selected-user {
+            font-weight: bold;
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -18,13 +43,18 @@
         </div>
     </header>
     <main>
-        <div class="chat-window">
-            <div class="chat-messages" id="chat-messages"></div>
-            <div class="chat-input-container">
-                <input type="text" id="chat-input" class="chat-input" placeholder="Type your message here...">
-                <button id="chat-send" class="chat-button">Send</button>
+        <div class="chat-container">
+            <div class="user-list" id="user-list">
+                <button id="new-chat" class="new-chat-button">New Chat</button> <!-- Moved to the bottom of the user list -->
             </div>
-            <button id="clear-chat" class="clear-chat-button">Clear Chat</button>
+            <div class="chat-window">
+                <div class="chat-messages" id="chat-messages"></div>
+                <div class="chat-input-container">
+                    <input type="text" id="chat-input" class="chat-input" placeholder="Send a message to AI"> <!-- Default placeholder -->
+                    <button id="chat-send" class="chat-button">Send</button>
+                </div>
+                <button id="clear-chat" class="clear-chat-button" style="display: block;">Clear Chat</button> <!-- Default is visible -->
+            </div>
         </div>
     </main>
     <div id="notification-container"></div>
@@ -37,6 +67,8 @@
         </div>
     </footer>
     <script>
+        let selectedReceiver = 'ai'; // Default receiver is 'ai'
+
         document.getElementById('logout-button').addEventListener('click', () => {
             sessionStorage.removeItem('username');
             window.location.href = 'login';
@@ -49,9 +81,126 @@
                 window.location.href = 'login';
             } else {
                 document.getElementById('user-name').textContent = `Welcome, ${username}`;
+                loadUserList(username);
             }
         });
+
+        function loadUserList(username) {
+            fetch('get_user_chat_instances.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username: username })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const userList = document.getElementById('user-list');
+                    userList.innerHTML = ''; // Clear the user list
+                    const receivers = new Set();
+                    data.chatInstances.forEach(instance => {
+                        if (instance.sender_user === username) {
+                            receivers.add(instance.receiver_user);
+                        }
+                    });
+                    receivers.forEach(receiver => {
+                        const userItem = document.createElement('div');
+                        userItem.className = 'user-item';
+                        userItem.textContent = receiver;
+                        userItem.addEventListener('click', () => {
+                            selectedReceiver = receiver; // Set the selected receiver
+                            highlightSelectedUser(receiver); // Highlight the selected user
+                            document.getElementById('clear-chat').style.display = receiver === 'ai' ? 'block' : 'none'; // Toggle clear chat button
+                            document.getElementById('chat-input').placeholder = `Send a message to ${receiver}`; // Update placeholder
+                            loadChatHistory(username, receiver);
+                        });
+                        userList.appendChild(userItem);
+                    });
+                    // Append the "New Chat" button at the end of the user list
+                    const newChatButton = document.createElement('button');
+                    newChatButton.id = 'new-chat';
+                    newChatButton.className = 'new-chat-button';
+                    newChatButton.textContent = 'New Chat';
+                    newChatButton.addEventListener('click', createNewChat);
+                    userList.appendChild(newChatButton);
+                } else {
+                    console.error('Error loading user list:', data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error loading user list:', error);
+            });
+        }
+
+        function highlightSelectedUser(receiver) {
+            const userItems = document.querySelectorAll('.user-item');
+            userItems.forEach(item => {
+                if (item.textContent === receiver) {
+                    item.classList.add('selected-user');
+                } else {
+                    item.classList.remove('selected-user');
+                }
+            });
+        }
+
+        function loadChatHistory(username, receiver) {
+            const chatMessages = document.getElementById('chat-messages');
+            chatMessages.innerHTML = ''; // Clear the current chat box
+
+            fetch('load_chat_history.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username: username, receiver: receiver })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    data.chatHistory.forEach(item => {
+                        const messageClass = item.sender === username ? 'user-message' : 'ai-message';
+                        addMessageToChat(messageClass, item.message);
+                    });
+                } else {
+                    console.error('Error loading chat history:', data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error loading chat history:', error);
+            });
+        }
+
+        function createNewChat() {
+            const newChatUser = prompt('Enter the username of the user you want to chat with:');
+            if (newChatUser) {
+                const hashedUsername = sessionStorage.getItem('username');
+                const username = hashedUsername ? atob(hashedUsername) : null; // Decode the hashed username
+                if (username) {
+                    fetch('create_new_chat.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ sender: username, receiver: newChatUser })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            loadUserList(username);
+                            showNotification('New chat created successfully.');
+                        } else {
+                            showNotification('Error creating new chat: ' + data.message, true);
+                        }
+                    })
+                    .catch(error => {
+                        showNotification('An error occurred: ' + error.message, true);
+                    });
+                }
+            }
+        }
     </script>
+    <script src="updateYear.js"></script>
     <script src="chathandler.js"></script>
     <script src="accounthandler.js"></script>
 </body>

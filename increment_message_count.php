@@ -17,13 +17,19 @@ if (!$data) {
 }
 
 $username = $data['username'] ?? null;
+$isAIQuery = $data['isAIQuery'] ?? false;
 
 if (empty($username)) {
     echo json_encode(['success' => false, 'message' => 'Username is required.']);
     exit();
 }
 
-$sql = "UPDATE user_info SET messages_sent = messages_sent + 1, messages_sent_24h = messages_sent_24h + 1 WHERE username = ?";
+if ($isAIQuery) {
+    $sql = "UPDATE user_info SET messages_sent = messages_sent + 1, messages_sent_24h = messages_sent_24h + 1 WHERE username = ?";
+} else {
+    $sql = "UPDATE user_info SET messages_sent = messages_sent + 1 WHERE username = ?";
+}
+
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
     echo json_encode(['success' => false, 'message' => 'SQL prepare failed: ' . $conn->error]);

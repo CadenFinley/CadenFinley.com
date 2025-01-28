@@ -21,6 +21,25 @@
             font-family: 'Roboto', sans-serif;
             font-weight: bold;
         }
+        .logo-button {
+            background: none;
+            border: 2px solid #ff6347;
+            border-radius: 10px;
+            padding: 0.5rem;
+            font-size: 2rem;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .logo-button .letter-c {
+            color: #ff6347;
+            margin-right: -0.2rem;
+        }
+        .logo-button .letter-j {
+            color: #4682b4;
+        }
     </style>
 </head>
 <body>
@@ -35,18 +54,19 @@
         <section id="about-me">
             <h2>About Me</h2>
             <p>Hello! My name is Caden Finley, and I strive to build and create things with purpose and intent.</p>
-            <p>I am a creative and passionate software developer that specializes in back-end development, data management and manipulation, test suite building, and tooling using Python, Java, C, C++, and PHP</p>
+            <p>I am a software developer that specializes in back-end development, scripting, data management and manipulation, system architechture and design, test suite building, and tooling using Python, Java, C, C++, PHP, SQL, etc.</p>
         </section>
         <section id="education">
             <div class="container">
                 <h2>Education</h2>
-                <p><strong>Dallas College</strong> August 2019-May 2023<br>
-                Associates Degree, Computer Science Dallas, Texas<br>
-                • Achieved 3 certificates in industry during time at Dallas College: CIT Software Programme Developer Assistant, Programmer Lvl. 1, Technology Support</p>
-                <p><strong>Abilene Christian University</strong> August 2023- May 2026<br>
-                Computer Science, Software Engineering Abilene, Texas<br>
+                <p><strong style="font-size: 1.2rem;">Dallas College</strong> <span style="float: right;">(2021 - 2023)</span><br>
+                <strong>Associates Degree, Computer Science</strong><br>
+                • Achieved 3 certificates in industry during time at Dallas College: CIT Software Programmer Developer Assistant, Programmer Lvl. 1, Technology Support all while still in highschool</p>
+                <br>
+                <p><strong style="font-size: 1.2rem;">Abilene Christian University</strong> <span style="float: right;">(2023 - 2026)</span><br>
+                <strong>Computer Science, Software Engineering</strong><br>
                 • Studying towards a Bachelor's in Computer Science with a concentration in Software Engineering<br>
-                • Used and learned tools like Python, Java, C, C++, PHP, JavaScript, HTML, CSS, Standard ML, SWI-Prolog, LEX, SQL, and Git<br>
+                • Used and learned tools like Python, Java, C, C++, PHP, JavaScript, HTML, CSS, Standard ML, SWI-Prolog, LEX, SQL, and Git</p>
             </div>
         </section>
     </main>
@@ -62,7 +82,7 @@
             <h2>Connect</h2>
             <p>Thanks for taking the time to look at my website!</p>
             <p>I would love to get to know you, feel free to connect with me on social media or via the email form:</p>
-            <p>You can find me on Instagram, GitHub, and LinkedIn. I respond to all DM's and direct inqueries on those platforms..</p>
+            <p>You can find me on Instagram, GitHub, and LinkedIn. I respond to all DM's and direct inqueries on those platforms.</p>
             <p>If you prefer, you can also send me a message using the email form below. I try to respond to all emails within 24 hours.</p>
             <div class="form-group">
                 <button onclick="document.getElementById('contact-popup').style.display='flex'">Contact Me</button>
@@ -70,7 +90,7 @@
         </div>
     </section>
     <div id="contact-popup" class="contact-popup" style="display:none;">
-        <div class="form-container" style="max-width: 700px; width: 100%;"> <!-- Add inline styles for wider form -->
+        <div class="form-container" style="max-width: 700px; width: 100%;">
             <form method="POST" id="form" class="contact-form">
                 <input type="hidden" name="access_key" value="8a51a2bc-5718-4b9f-b507-5a18e037d49d">
                 <div class="form-group">
@@ -110,6 +130,7 @@
             <p>You can download my resume <a href="images/Caden_Finley_resume.pdf" target="_blank">here</a>.</p>
         </div>
     </footer>
+    <script src="updateYear.js"></script>
     <script src="script.js"></script>
     <script src="email_script.js"></script>
 </body>

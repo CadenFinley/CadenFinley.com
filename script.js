@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const links = [
         { url: 'https://www.instagram.com/cadenfinley/', img: 'images/instagram.png', text: 'Instagram' },
         { url: 'https://github.com/CadenFinley', img: 'images/github-dark.png', text: 'Github', imgLight: 'images/github-light.png' },
-        { url: 'https://www.linkedin.com/in/caden-finley-b8a519293/', img: 'images/linkedin.png', text: 'LinkedIn' }
+        { url: 'https://www.linkedin.com/in/cadenjfinley/', img: 'images/linkedin.png', text: 'LinkedIn' }
     ];
 
     const linksContainer = document.querySelector('header .link-items');
@@ -69,7 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         .catch(error => console.error('Error fetching languages:', error));
                 });
         })
-        .catch(error => console.error('Error fetching repos:', error));
+        .catch(error => {
+            console.error('Error fetching repos:', error);
+            const projectsContainer = document.querySelector('#projects .container');
+            const errorMessage = document.createElement('p');
+            errorMessage.innerHTML = 'Failed to load GitHub projects. Please visit my GitHub profile directly: <a href="https://github.com/CadenFinley" target="_blank">Caden Finley on GitHub</a>';
+            projectsContainer.appendChild(errorMessage);
+        });
 
     // Increment visits count
     fetch('increment_visits.php', {
@@ -237,5 +243,4 @@ document.addEventListener('DOMContentLoaded', () => {
         navMenuButton.classList.remove('show');
         navMenu.classList.remove('show');
     });
-
 });

@@ -1,0 +1,40 @@
+---
+deployment:
+      tasks:
+        - export DEPLOYPATH=/home/llirhcywukjh/public_html/cadenfinley.com/
+        - /bin/cp -R images $DEPLOYPATH
+        - /bin/cp -R styles.css $DEPLOYPATH
+        - /bin/cp -R home.html $DEPLOYPATH
+        - /bin/cp -R script.js $DEPLOYPATH
+        - /bin/cp -R email_script.js $DEPLOYPATH
+        - /bin/cp -R register.php $DEPLOYPATH
+        - /bin/cp -R login.php $DEPLOYPATH
+        - /bin/cp -R accounthandler.js $DEPLOYPATH
+        - /bin/cp -R auth-styles.css $DEPLOYPATH
+        - /bin/cp -R login.html $DEPLOYPATH
+        - /bin/cp -R chat.html $DEPLOYPATH
+        - /bin/cp -R chathandler.js $DEPLOYPATH
+        - /bin/cp -R register.html $DEPLOYPATH
+        - /bin/cp -R reset_message_count.php $DEPLOYPATH
+        - /bin/cp -R increment_message_count.php $DEPLOYPATH
+        - /bin/cp -R check_message_limit.php $DEPLOYPATH
+        - /bin/cp -R 404.shtml $DEPLOYPATH
+        - /bin/cp -R .htaccess $DEPLOYPATH
+        - /bin/cp -R admin.html $DEPLOYPATH
+        - /bin/cp -R adminhandler.js $DEPLOYPATH
+        - /bin/cp -R delete_user.php $DEPLOYPATH
+        - /bin/cp -R get_users.php $DEPLOYPATH
+        - /bin/cp -R increment_visits.php $DEPLOYPATH
+        - /bin/cp -R 401.shtml $DEPLOYPATH
+        - /bin/cp -R 403.shtml $DEPLOYPATH
+        - /bin/cp -R 500.shtml $DEPLOYPATH
+        - /bin/cp -R 503.shtml $DEPLOYPATH
+        - /bin/cp -R updateYear.js $DEPLOYPATH
+        - /bin/cp -R config.php $DEPLOYPATH
+        - /bin/cp -R update_sent_history.php $DEPLOYPATH
+        - /bin/cp -R load_chat_history.php $DEPLOYPATH
+        - /bin/cp -R clear_chat_history.php $DEPLOYPATH
+        - /bin/cp -R get_user_chat_instances.php $DEPLOYPATH
+        - /bin/cp -R create_new_chat.php $DEPLOYPATH
+        
+        

@@ -7,6 +7,27 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="images/cadenfinleylogo.ico" type="image/x-icon">
+    <style>
+        .logo-button {
+            background: none;
+            border: 2px solid #ff6347; /* Outline color */
+            border-radius: 10px; /* Smooth corners */
+            padding: 0.5rem;
+            font-size: 2rem;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .logo-button .letter-c {
+            color: #ff6347; /* Tomato color */
+            margin-right: -0.2rem; /* Move letters closer */
+        }
+        .logo-button .letter-j {
+            color: #4682b4; /* SteelBlue color */
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -28,5 +49,6 @@
             <p>You can download my resume <a href="images/Caden_Finley_resume.pdf" target="_blank">here</a>.</p>
         </div>
     </footer>
+    <script src="updateYear.js"></script>
 </body>
 </html>
