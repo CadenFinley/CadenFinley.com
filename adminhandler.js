@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const hashedUsername = sessionStorage.getItem('username');
     const username = hashedUsername ? atob(hashedUsername) : null; // Decode the hashed username
-    if (!username || username !== 'admin') {
+    const hashedAdminName = btoa('admin'); // Hash the admin name for comparison
+    if (!username || btoa(username) !== hashedAdminName) { // Compare the hashed values
         window.location.href = 'login';
     } else {
         document.getElementById('admin-name').textContent = `Welcome, ${username}`;
@@ -23,10 +24,12 @@ async function loadUsers() {
             populateUserTable(users);
         } else {
             showNotification('Failed to load users.', true);
+            alert('Failed to load users.');
         }
     } catch (error) {
         console.error('Error loading users:', error);
         showNotification('An error occurred while loading users.', true);
+        alert('An error occurred while loading users.');
     }
 }
 
@@ -38,10 +41,12 @@ async function loadVisits() {
             document.getElementById('visit-count').textContent = `Total Visits: ${data.visits}`;
         } else {
             showNotification('Failed to load visit count.', true);
+            alert('Failed to load visit count.');
         }
     } catch (error) {
         console.error('Error loading visit count:', error);
         showNotification('An error occurred while loading visit count.', true);
+        alert('An error occurred while loading visit count.');
     }
 }
 
@@ -55,7 +60,7 @@ function populateUserTable(users) {
             <td>${new Date(user.lastlogin).toLocaleString()}</td>
             <td>${user.messages_sent}</td>
             <td>
-                <button onclick="deleteUser('${user.username}')">Delete</button>
+                ${user.username !== 'admin' ? `<button onclick="deleteUser('${user.username}')">Delete</button>` : ''}
             </td>
         `;
         userTableBody.appendChild(row);
@@ -71,18 +76,22 @@ async function deleteUser(username) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username })
+            body: JSON.stringify({ username }) // Send the username directly
         });
         const result = await response.json();
         if (response.ok && result.success) {
             showNotification('User deleted successfully.');
+            alert('User deleted successfully.');
             loadUsers();
         } else {
-            showNotification('Failed to delete user.', true);
+            console.error(`Failed to delete user: ${result.message}`);
+            showNotification(`Failed to delete user: ${result.message}`, true);
+            alert(`Failed to delete user: ${result.message}`);
         }
     } catch (error) {
         console.error('Error deleting user:', error);
         showNotification('An error occurred while deleting the user.', true);
+        alert('An error occurred while deleting the user.');
     }
 }
 

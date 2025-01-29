@@ -124,12 +124,36 @@
                     newChatButton.textContent = 'New Chat';
                     newChatButton.addEventListener('click', createNewChat);
                     userList.appendChild(newChatButton);
+
+                    // Select the first user in the list by default, if any
+                    const firstUserItem = userList.querySelector('.user-item');
+                    if (firstUserItem) {
+                        firstUserItem.click();
+                    }
                 } else {
                     console.error('Error loading user list:', data.message);
+                    // Ensure the "New Chat" button is always available
+                    const userList = document.getElementById('user-list');
+                    userList.innerHTML = ''; // Clear the user list
+                    const newChatButton = document.createElement('button');
+                    newChatButton.id = 'new-chat';
+                    newChatButton.className = 'new-chat-button';
+                    newChatButton.textContent = 'New Chat';
+                    newChatButton.addEventListener('click', createNewChat);
+                    userList.appendChild(newChatButton);
                 }
             })
             .catch(error => {
                 console.error('Error loading user list:', error);
+                // Ensure the "New Chat" button is always available
+                const userList = document.getElementById('user-list');
+                userList.innerHTML = ''; // Clear the user list
+                const newChatButton = document.createElement('button');
+                newChatButton.id = 'new-chat';
+                newChatButton.className = 'new-chat-button';
+                newChatButton.textContent = 'New Chat';
+                newChatButton.addEventListener('click', createNewChat);
+                userList.appendChild(newChatButton);
             });
         }
 
@@ -177,6 +201,10 @@
                 const hashedUsername = sessionStorage.getItem('username');
                 const username = hashedUsername ? atob(hashedUsername) : null; // Decode the hashed username
                 if (username) {
+                    if (newChatUser === username) {
+                        showNotification('You cannot chat with yourself.', true);
+                        return;
+                    }
                     fetch('create_new_chat.php', {
                         method: 'POST',
                         headers: {

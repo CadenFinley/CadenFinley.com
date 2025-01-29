@@ -1,11 +1,6 @@
 <?php
-header('Content-Type: application/json');
-
 session_start();
-if (!isset($_SESSION['adminName']) || $_SESSION['adminName'] !== 'admin') {
-    echo json_encode(['success' => false, 'message' => 'Unauthorized access.']);
-    exit();
-}
+header('Content-Type: application/json');
 
 $dbname = "User_Data";
 require 'config.php';
@@ -17,26 +12,48 @@ if ($conn->connect_error) {
 }
 
 $data = json_decode(file_get_contents('php://input'), true);
-if (!$data || !isset($data['username'])) {
+if (!$data) {
     echo json_encode(['success' => false, 'message' => 'Invalid input data.']);
     exit();
 }
 
-$username = $data['username'];
+$username = $data['username'] ?? null;
 
-$sql = "DELETE FROM user_info WHERE username = ?";
-$stmt = $conn->prepare($sql);
-if (!$stmt) {
-    echo json_encode(['success' => false, 'message' => 'SQL prepare failed: ' . $conn->error]);
+if (empty($username)) {
+    echo json_encode(['success' => false, 'message' => 'Username is required.']);
     exit();
 }
-$stmt->bind_param("s", $username);
 
-if ($stmt->execute()) {
-    echo json_encode(['success' => true, 'message' => 'User deleted successfully.']);
-} else {
-    echo json_encode(['success' => false, 'message' => 'Error deleting user: ' . $stmt->error]);
+$conn->begin_transaction();
+
+try {
+    $sql = "DELETE FROM user_info WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        throw new Exception('SQL prepare failed: ' . $conn->error);
+    }
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+
+    if ($stmt->affected_rows === 0) {
+        throw new Exception('User not found.');
+    }
+
+    $sql = "DELETE FROM user_chats WHERE sender_user = ? OR receiver_user = ?";
+    $stmt = $conn->prepare($sql);
+    if (!$stmt) {
+        throw new Exception('SQL prepare failed: ' . $conn->error);
+    }
+    $stmt->bind_param("ss", $username, $username);
+    $stmt->execute();
+
+    $conn->commit();
+    echo json_encode(['success' => true, 'message' => 'User and their chats deleted successfully.']);
+} catch (Exception $e) {
+    $conn->rollback();
+    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
 }
 
+$stmt->close();
 $conn->close();
 ?>
