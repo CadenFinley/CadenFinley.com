@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     projectBox.innerHTML = `
                         <h2>${repo.name}</h2>
                         <p class="project-languages">Languages: Loading...</p>
-                        <p><span class="project-date">${new Date(repo.updated_at).toLocaleDateString()}</span></p>
+                        <p class="project-date" style="display: none;">${new Date(repo.updated_at).toLocaleDateString()}</p>
                         <p>${repo.description || 'No description available'}</p>
                     `;
                     projectBox.addEventListener('click', () => {

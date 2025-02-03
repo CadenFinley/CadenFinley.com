@@ -9,7 +9,6 @@ document.getElementById('clear-chat').addEventListener('click', clearChat);
 
 let chatCache = [];
 
-// Clear chat box on page load
 document.addEventListener('DOMContentLoaded', function() {
     loadChatFromDatabase();
     highlightSelectedUser('ai'); // Highlight AI chat on page load
@@ -312,7 +311,7 @@ function highlightSelectedUser(receiver) {
 }
 
 function startMessageCheck() {
-    setInterval(checkForNewMessages, 3000); // Check for new messages every 5 seconds
+    setInterval(checkForNewMessages, 2000); // Check for new messages every 5 seconds
 }
 
 function checkForNewMessages() {

@@ -241,6 +241,11 @@ main img {
 main img.profile-pic {
     border: 3px solid #ff6f61;
     object-fit: cover;
+    transition: transform 0.3s ease; /* Add transition for smooth effect */
+}
+
+main img.profile-pic:hover {
+    transform: scale(1.03); /* Enlarge image a little less on hover */
 }
 
 main .caption {
@@ -266,6 +271,11 @@ section h2 {
     color: #ff6f61;
     border-bottom: 2px solid #ff6f61;
     padding-bottom: 0.5rem;
+    transition: transform 0.3s ease; /* Add transition for smooth effect */
+}
+
+section h2:hover {
+    transform: scale(1.02); /* Enlarge title on hover */
 }
 
 section.light-mode h2 {
@@ -406,17 +416,12 @@ section#projects.light-mode, section#connect.light-mode {
 }
 
 .project-box .project-languages {
-    display: none;
     margin: 0.5rem 0;
     text-align: center;
     color: #cccccc;
     word-wrap: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
-}
-
-.project-box:hover .project-languages {
-    display: block;
 }
 
 footer {
