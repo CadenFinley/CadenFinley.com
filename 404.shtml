@@ -10,8 +10,8 @@
     <style>
         .logo-button {
             background: none;
-            border: 2px solid #ff6347; /* Outline color */
-            border-radius: 10px; /* Smooth corners */
+            border: 2px solid #ff6347;
+            border-radius: 10px;
             padding: 0.5rem;
             font-size: 2rem;
             font-family: 'Roboto', sans-serif;
@@ -21,11 +21,11 @@
             align-items: center;
         }
         .logo-button .letter-c {
-            color: #ff6347; /* Tomato color */
-            margin-right: -0.2rem; /* Move letters closer */
+            color: #ff6347;
+            margin-right: -0.2rem;
         }
         .logo-button .letter-j {
-            color: #4682b4; /* SteelBlue color */
+            color: #4682b4;
         }
     </style>
 </head>
