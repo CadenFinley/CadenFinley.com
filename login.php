@@ -47,7 +47,7 @@ if (!password_verify($password, $user['password'])) {
 }
 
 $_SESSION['username'] = $username;
-session_write_close(); // Ensure session data is saved before redirect
+session_write_close();
 
 if ($username === 'admin') {
     echo json_encode(['success' => true, 'message' => 'Login successful!', 'redirect' => '/admin']);

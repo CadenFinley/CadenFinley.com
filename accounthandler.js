@@ -34,7 +34,7 @@ class AccountHandler {
                 throw new Error(`Server error: ${response.status} ${response.statusText}`);
             }
             if (result.success) {
-                const hashedUsername = btoa(username); // Hash the username using base64 encoding
+                const hashedUsername = btoa(username);
                 sessionStorage.setItem('username', hashedUsername);
                 window.location.href = result.redirect;
             }

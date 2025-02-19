@@ -13,7 +13,6 @@ deployment:
         - /bin/cp -R auth-styles.css $DEPLOYPATH
         - /bin/cp -R login.html $DEPLOYPATH
         - /bin/cp -R chat.html $DEPLOYPATH
-        - /bin/cp -R chathandler.js $DEPLOYPATH
         - /bin/cp -R register.html $DEPLOYPATH
         - /bin/cp -R reset_message_count.php $DEPLOYPATH
         - /bin/cp -R increment_message_count.php $DEPLOYPATH
@@ -36,5 +35,8 @@ deployment:
         - /bin/cp -R clear_chat_history.php $DEPLOYPATH
         - /bin/cp -R get_user_chat_instances.php $DEPLOYPATH
         - /bin/cp -R create_new_chat.php $DEPLOYPATH
+        - /bin/cp -R chat.js $DEPLOYPATH
+        - /bin/cp -R login.js $DEPLOYPATH
+        - /bin/cp -R register.js $DEPLOYPATH
         
         
