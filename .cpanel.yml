@@ -29,7 +29,6 @@ deployment:
         - /bin/cp -R 500.shtml $DEPLOYPATH
         - /bin/cp -R 503.shtml $DEPLOYPATH
         - /bin/cp -R updateYear.js $DEPLOYPATH
-        - /bin/cp -R config.php $DEPLOYPATH
         - /bin/cp -R update_sent_history.php $DEPLOYPATH
         - /bin/cp -R load_chat_history.php $DEPLOYPATH
         - /bin/cp -R clear_chat_history.php $DEPLOYPATH
