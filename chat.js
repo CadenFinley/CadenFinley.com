@@ -1,4 +1,4 @@
-let selectedReceiver = 'ai'; // Default receiver is 'ai'
+let selectedReceiver = 'ai';
 let chatCache = [];
 
 document.getElementById('logout-button').addEventListener('click', () => {
@@ -8,13 +8,13 @@ document.getElementById('logout-button').addEventListener('click', () => {
 
 document.addEventListener('DOMContentLoaded', function() {
     const hashedUsername = sessionStorage.getItem('username');
-    const username = hashedUsername ? atob(hashedUsername) : null; // Decode the hashed username
+    const username = hashedUsername ? atob(hashedUsername) : null;
     if (!username) {
         window.location.href = 'login';
     } else {
         document.getElementById('user-name').textContent = `Welcome, ${username}`;
         loadUserList(username);
-        highlightSelectedUser('ai'); // Highlight AI chat on page load
+        highlightSelectedUser('ai');
         startMessageCheck();
     }
 });
@@ -31,7 +31,7 @@ function loadUserList(username) {
     .then(data => {
         if (data.success) {
             const userList = document.getElementById('user-list');
-            userList.innerHTML = ''; // Clear the user list
+            userList.innerHTML = '';
             const receivers = new Set();
             data.chatInstances.forEach(instance => {
                 if (instance.sender_user === username) {
@@ -43,31 +43,28 @@ function loadUserList(username) {
                 userItem.className = 'user-item';
                 userItem.textContent = receiver;
                 userItem.addEventListener('click', () => {
-                    selectedReceiver = receiver; // Set the selected receiver
-                    highlightSelectedUser(receiver); // Highlight the selected user
-                    loadChatHistory(username, receiver); // Load the chat history
-                    document.getElementById('clear-chat').style.display = receiver === 'ai' ? 'block' : 'none'; // Toggle clear chat button
-                    document.getElementById('chat-input').placeholder = `Send a message to ${receiver}`; // Update placeholder
+                    selectedReceiver = receiver;
+                    highlightSelectedUser(receiver);
+                    loadChatHistory(username, receiver);
+                    document.getElementById('clear-chat').style.display = receiver === 'ai' ? 'block' : 'none';
+                    document.getElementById('chat-input').placeholder = `Send a message to ${receiver}`;
                 });
                 userList.appendChild(userItem);
             });
-            // Append the "New Chat" button at the end of the user list
             const newChatButton = document.createElement('button');
             newChatButton.id = 'new-chat';
             newChatButton.className = 'new-chat-button';
             newChatButton.textContent = 'New Chat';
             newChatButton.addEventListener('click', createNewChat);
             userList.appendChild(newChatButton);
-            // Select the first user in the list by default, if any
             const firstUserItem = userList.querySelector('.user-item');
             if (firstUserItem) {
                 firstUserItem.click();
             }
         } else {
             console.error('Error loading user list:', data.message);
-            // Ensure the "New Chat" button is always available
             const userList = document.getElementById('user-list');
-            userList.innerHTML = ''; // Clear the user list
+            userList.innerHTML = '';
             const newChatButton = document.createElement('button');
             newChatButton.id = 'new-chat';
             newChatButton.className = 'new-chat-button';
@@ -78,9 +75,8 @@ function loadUserList(username) {
     })
     .catch(error => {
         console.error('Error loading user list:', error);
-        // Ensure the "New Chat" button is always available
         const userList = document.getElementById('user-list');
-        userList.innerHTML = ''; // Clear the user list
+        userList.innerHTML = '';
         const newChatButton = document.createElement('button');
         newChatButton.id = 'new-chat';
         newChatButton.className = 'new-chat-button';
@@ -105,7 +101,7 @@ function createNewChat() {
     const newChatUser = prompt('Enter the username of the user you want to chat with:');
     if (newChatUser) {
         const hashedUsername = sessionStorage.getItem('username');
-        const username = hashedUsername ? atob(hashedUsername) : null; // Decode the hashed username
+        const username = hashedUsername ? atob(hashedUsername) : null;
         if (username) {
             if (newChatUser === username) {
                 showNotification('You cannot chat with yourself.', true);
@@ -156,7 +152,7 @@ document.getElementById('clear-chat').addEventListener('click', clearChat);
 
 function sendMessage() {
     const hashedUsername = sessionStorage.getItem('username');
-    const username = hashedUsername ? atob(hashedUsername) : null; // Decode the hashed username
+    const username = hashedUsername ? atob(hashedUsername) : null;
     if (!username) {
         showNotification('You must be logged in to send messages.', true);
         return;
@@ -177,7 +173,7 @@ function sendMessage() {
 
 function loadChatHistory(username, receiver) {
     const chatMessages = document.getElementById('chat-messages');
-    chatMessages.innerHTML = ''; // Clear the current chat box
+    chatMessages.innerHTML = '';
     chatCache = [];
 
     fetch('load_chat_history.php', {
@@ -300,7 +296,7 @@ function checkMessageLimit(username) {
 
 function incrementMessageCount(isAIQuery) {
     const hashedUsername = sessionStorage.getItem('username');
-    const username = hashedUsername ? atob(hashedUsername) : null; // Decode the hashed username
+    const username = hashedUsername ? atob(hashedUsername) : null;
     if (!username) return;
 
     fetch('increment_message_count.php', {
@@ -327,7 +323,7 @@ function clearChat() {
     chatCache = [];
 
     const hashedUsername = sessionStorage.getItem('username');
-    const username = hashedUsername ? atob(hashedUsername) : null; // Decode the hashed username
+    const username = hashedUsername ? atob(hashedUsername) : null;
     if (!username) return;
 
     fetch('clear_chat_history.php', {

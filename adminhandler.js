@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     const hashedUsername = sessionStorage.getItem('username');
-    const username = hashedUsername ? atob(hashedUsername) : null; // Decode the hashed username
-    const hashedAdminName = btoa('admin'); // Hash the admin name for comparison
-    if (!username || btoa(username) !== hashedAdminName) { // Compare the hashed values
+    const username = hashedUsername ? atob(hashedUsername) : null;
+    const hashedAdminName = btoa('admin');
+    if (!username || btoa(username) !== hashedAdminName) {
         window.location.href = 'login';
     } else {
         document.getElementById('admin-name').textContent = `Welcome, ${username}`;
         loadUsers();
-        loadVisits(); // Load visits count
+        loadVisits();
     }
 
     document.getElementById('logout-button').addEventListener('click', () => {

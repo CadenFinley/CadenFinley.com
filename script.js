@@ -76,8 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
             errorMessage.innerHTML = 'Failed to load GitHub projects. Please visit my GitHub profile directly: <a href="https://github.com/CadenFinley" target="_blank">Caden Finley on GitHub</a>';
             projectsContainer.appendChild(errorMessage);
         });
-
-    // Increment visits count
     fetch('increment_visits.php', {
         method: 'POST'
     })
