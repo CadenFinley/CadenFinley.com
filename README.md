@@ -16,7 +16,7 @@ Welcome to the repository for my personal website. This website showcases my pro
 
 ## Overview
 
-This website is my personal portfolio that includes sections about me, my education, my projects, and ways to connect with me. It is built using HTML, CSS, PHP, and JavaScript.
+This website is my personal portfolio that includes sections about me, my education, my projects, and ways to connect with me. It is built using HTML, CSS, and JavaScript.
 
 ## Features
 
@@ -53,7 +53,6 @@ To set up the project locally, follow these steps:
 - HTML
 - CSS
 - JavaScript
-- PHP
 - [GitHub API](https://docs.github.com/en/rest)
 
 ## Authentication
