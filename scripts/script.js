@@ -32,6 +32,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 scrollDownArrow.style.justifyContent = 'center';
                 scrollDownArrow.style.alignItems = 'center';
                 scrollDownArrow.style.pointerEvents = 'auto';
+                const arrowSpan = scrollDownArrow.querySelector('span');
+                if (arrowSpan) {
+                    arrowSpan.addEventListener('mouseenter', () => {
+                        arrowSpan.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                        arrowSpan.style.transform = 'scale(1.1)';
+                    });
+                    
+                    arrowSpan.addEventListener('mouseleave', () => {
+                        arrowSpan.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+                        arrowSpan.style.transform = 'scale(1)';
+                    });
+                }
             }
             
             document.body.style.padding = '0';
