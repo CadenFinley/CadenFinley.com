@@ -1,8 +1,8 @@
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    padding: 0; /* Removed padding */
-    background-color: #1a1a1a; /* Darker background for dark mode */
+    padding: 0;
+    background-color: #1a1a1a;
     color: white;
     padding-bottom: 4rem;
     max-width: 100%;
@@ -17,7 +17,7 @@ body.light-mode {
 }
 
 header {
-    background-color: #303030; /* Brighter background for dark mode */
+    background-color: #303030;
     color: #e0e0e0;
     padding: 1rem 2rem;
     text-align: center;
@@ -45,7 +45,7 @@ header.header-visible {
 }
 
 header.light-mode {
-    background-color: #e0e0e0; /* Darker background for light mode */
+    background-color: #e0e0e0;
     color: #000000;
 }
 
@@ -241,7 +241,7 @@ main {
     width: 100%;
     box-sizing: border-box;
     transition: background-color 0.3s, color 0.3s;
-    padding-top: 2rem; /* Add proper spacing after hero section */
+    padding-top: 2rem;
 }
 
 main.light-mode {
@@ -286,7 +286,7 @@ section h2 {
     color: #ff6f61;
     border-bottom: 2px solid #ff6f61;
     padding-bottom: 0.5rem;
-    transition: transform 0.3s ease; /* Add transition for smooth effect */
+    transition: transform 0.3s ease;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -294,7 +294,7 @@ section h2 {
 }
 
 section h2:hover {
-    transform: scale(1.02); /* Enlarge title on hover */
+    transform: scale(1.02);
 }
 
 section.light-mode h2 {
@@ -444,7 +444,7 @@ section#projects.light-mode, section#connect.light-mode {
 }
 
 footer {
-    background-color: #303030; /* Brighter background for dark mode */
+    background-color: #303030;
     color: #e0e0e0;
     text-align: center;
     padding: 1rem 2rem;
@@ -460,7 +460,7 @@ footer {
 }
 
 footer.light-mode {
-    background-color: #e0e0e0; /* Darker background for light mode */
+    background-color: #e0e0e0;
     color: #000000;
 }
 
@@ -914,7 +914,6 @@ input:checked + .slider:before {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Custom Scrollbar Styles */
 ::-webkit-scrollbar {
     width: 12px;
 }
@@ -934,13 +933,11 @@ input:checked + .slider:before {
     background: #ff3b2f;
 }
 
-/* For Firefox */
 * {
     scrollbar-width: thin;
     scrollbar-color: #ff6f61 #303030;
 }
 
-/* Light mode scrollbar */
 body.light-mode::-webkit-scrollbar-track {
     background: #e0e0e0;
 }
@@ -960,24 +957,23 @@ body.light-mode * {
     justify-content: center;
     background: linear-gradient(-45deg, #ff6f61, #ff3b2f, #ff8a7f, #ff5449);
     background-size: 400% 400%;
-    animation: gradientBackground 30s ease infinite; /* Slowed down animation */
+    animation: gradientBackground 30s ease infinite;
     color: #ffffff;
     padding: 2rem;
     text-align: center;
-    border-radius: 0 0 30px 30px; /* Add rounded corners only at the bottom */
-    margin: 0; /* Remove margin */
+    border-radius: 0 0 30px 30px;
+    margin: 0;
     position: relative;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     transition: border-radius 0.3s ease-in-out;
-    min-height: 100vh; /* Full viewport height */
-    width: 100%; /* Full width */
+    min-height: 100vh;
+    width: 100%;
     box-sizing: border-box;
-    will-change: transform; /* Hardware acceleration hint */
-    transform: translateZ(0); /* Force GPU rendering */
+    will-change: transform;
+    transform: translateZ(0);
 }
 
-/* Add keyframes for gradient animation */
 @keyframes gradientBackground {
     0% {
         background-position: 0% 50%;
@@ -990,7 +986,6 @@ body.light-mode * {
     }
 }
 
-/* Simplified particle effect */
 #hero::after {
     content: '';
     position: absolute;
@@ -1001,10 +996,10 @@ body.light-mode * {
     background-image: 
         radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
     background-size: 100px 100px;
-    animation: floatingParticles 20s linear infinite; /* Slowed down animation */
+    animation: floatingParticles 20s linear infinite;
     pointer-events: none;
     z-index: 1;
-    will-change: background-position; /* Hardware acceleration hint */
+    will-change: background-position;
 }
 
 @keyframes floatingParticles {
@@ -1016,35 +1011,31 @@ body.light-mode * {
     }
 }
 
-/* Add styles for profile picture in hero section */
 #hero .profile-pic {
     width: 200px;
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
-    object-position: 40% 15%; /* Modified from center 30% to 45% 35% to move down and left */
+    object-position: 40% 15%;
     border: 4px solid white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     margin: 1.5rem 0;
     transition: transform 0.3s ease, border-color 0.3s ease;
     position: relative;
-    z-index: 2; /* Ensure profile pic appears above the animated background */
+    z-index: 2;
 }
 
-/* Make hero content appear above the animated background */
 #hero h2, #hero p, #hero .hero-nav-buttons, #hero .scroll-down-arrow {
     position: relative;
     z-index: 2;
 }
 
-/* Make profile pic glow subtly on hover */
 #hero .profile-pic:hover {
     transform: scale(1.03);
     border-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
-/* Adjust responsive styles for profile picture */
 @media (max-width: 480px) {
     #hero .profile-pic {
         width: 140px;
@@ -1052,7 +1043,6 @@ body.light-mode * {
         margin: 1rem 0;
     }
     
-    /* Adjust animation speed for smaller screens */
     #hero {
         animation: gradientBackground 10s ease infinite;
     }
@@ -1096,12 +1086,11 @@ body.light-mode * {
     animation: fadeInUp 1.2s ease-out;
 }
 
-/* Simplified hero button with fewer animations */
 .hero-nav-btn {
     background-color: rgba(255, 255, 255, 0.15);
     color: white;
     border: 2px solid rgba(255, 255, 255, 0.7);
-    border-radius: 30px !important; /* Added !important to ensure this style is applied */
+    border-radius: 30px !important;
     padding: 1rem 2.5rem;
     font-size: 1.1rem;
     font-weight: 600;
@@ -1113,12 +1102,11 @@ body.light-mode * {
     text-transform: uppercase;
     position: relative;
     overflow: hidden;
-    will-change: transform, background-color; /* Hardware acceleration hint */
-    -webkit-backface-visibility: hidden; /* Prevent flickering on hover */
+    will-change: transform, background-color;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
 
-/* Remove expensive ::before animation */
 .hero-nav-btn::before {
     display: none;
 }
@@ -1137,7 +1125,7 @@ body.light-mode * {
 
 @media (max-width: 768px) {
     #hero {
-        padding: 4rem 1.5rem 6rem 1.5rem; /* Adjusted padding for smaller screens */
+        padding: 4rem 1.5rem 6rem 1.5rem;
     }
     
     #hero h2 {
@@ -1156,7 +1144,7 @@ body.light-mode * {
     .hero-nav-btn {
         padding: 0.8rem 1.8rem;
         font-size: 1rem;
-        border-radius: 30px; /* Maintain same border-radius on hover */
+        border-radius: 30px;
     }
     
     .scroll-down-arrow {
@@ -1177,8 +1165,8 @@ body.light-mode * {
 
 @media (max-width: 480px) {
     #hero {
-        padding: 3rem 1rem 5rem 1rem; /* Adjusted padding for even smaller screens */
-        min-height: 300px; /* Smaller minimum height for mobile */
+        padding: 3rem 1rem 5rem 1rem;
+        min-height: 300px;
     }
     
     #hero h2 {
@@ -1201,23 +1189,22 @@ body.light-mode * {
         width: 100%;
         padding: 0.8rem 1.5rem;
         font-size: 0.9rem;
-        border-radius: 30px; /* Maintain same border-radius in smaller screens */
+        border-radius: 30px;
     }
 }
 
-/* Remove the duplicate scroll-down-arrow styles and replace with this unified version */
 .scroll-down-arrow {
     position: absolute;
-    bottom: 30px; /* Keep this value to maintain distance from bottom */
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     cursor: pointer;
-    z-index: 10; /* Increased z-index to ensure it appears above all background elements */
+    z-index: 10;
     opacity: 0.9;
     transition: opacity 0.3s ease;
-    pointer-events: auto; /* Ensure click events work */
-    width: 50px; /* Define width to ensure proper positioning */
-    height: 50px; /* Define height to ensure proper positioning */
+    pointer-events: auto;
+    width: 50px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1238,9 +1225,9 @@ body.light-mode * {
     backdrop-filter: blur(5px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    position: absolute; /* Change to absolute positioning */
-    bottom: 0; /* Position at bottom of parent */
-    left: 0; /* Align to left of parent */
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 .arrow.down {
@@ -1252,11 +1239,10 @@ body.light-mode * {
     padding: 0;
     transform: rotate(45deg);
     animation: bounce 2s infinite;
-    margin: 0 auto; /* Center the arrow */
-    z-index: 11; /* Make sure arrow is always visible */
+    margin: 0 auto;
+    z-index: 11;
 }
 
-/* Add responsive adjustments for hero section */
 @media (max-height: 700px) {
     #hero {
         padding-top: 3rem;
@@ -1276,7 +1262,7 @@ body.light-mode * {
 
 @media (max-height: 500px) {
     #hero {
-        min-height: 500px; /* Set minimum height for very short screens */
+        min-height: 500px;
     }
 }
 

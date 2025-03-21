@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Document is ready');
 
-    // Apply consistent border-radius to hero buttons immediately 
-    // and ensure other critical styles are applied
     document.querySelectorAll('.hero-nav-btn').forEach(btn => {
         btn.style.borderRadius = '30px';
         btn.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
@@ -11,21 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.style.overflow = 'hidden';
     });
     
-    // Optimized setHeroHeight function
     function setHeroHeight() {
         const hero = document.getElementById('hero');
         if (hero) {
             const viewportHeight = window.innerHeight;
-            // Set height once and use hardware acceleration
             hero.style.height = viewportHeight + 'px';
             hero.style.minHeight = viewportHeight + 'px';
             hero.style.width = '100%';
             hero.style.margin = '0';
             hero.style.borderRadius = '0 0 30px 30px';
             hero.style.position = 'relative';
-            hero.style.transform = 'translateZ(0)'; // Force GPU rendering
+            hero.style.transform = 'translateZ(0)';
             
-            // Position scroll-down arrow only once
             const scrollDownArrow = document.querySelector('.scroll-down-arrow');
             if (scrollDownArrow) {
                 scrollDownArrow.style.position = 'absolute';
@@ -39,28 +34,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 scrollDownArrow.style.pointerEvents = 'auto';
             }
             
-            // Set body styles for proper layout
             document.body.style.padding = '0';
             document.body.style.margin = '0';
             document.body.style.width = '100%';
-            document.body.style.overflow = 'auto'; // Allow scrolling immediately
+            document.body.style.overflow = 'auto';
         }
     }
     
-    // Run on load
     setHeroHeight();
     
-    // Throttle resize events for better performance
     let resizeTimeout;
     window.addEventListener('resize', () => {
         if (resizeTimeout) clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(setHeroHeight, 100);
     });
 
-    // Optimized scroll down arrow visibility
     const scrollDownArrow = document.querySelector('.scroll-down-arrow');
     if (scrollDownArrow) {
-        // Set initial styles once
         scrollDownArrow.style.visibility = 'visible';
         scrollDownArrow.style.opacity = '0.9';
         scrollDownArrow.style.position = 'absolute';
@@ -71,9 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollDownArrow.style.justifyContent = 'center';
         scrollDownArrow.style.alignItems = 'center';
         
-        // Throttle scroll events for arrow opacity
         let lastScrollTime = 0;
-        const scrollThreshold = 50; // ms between scroll updates
+        const scrollThreshold = 50;
         
         window.addEventListener('scroll', () => {
             const now = Date.now();
@@ -83,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollY = window.scrollY;
             const heroHeight = document.getElementById('hero').offsetHeight;
             
-            // Only update DOM when necessary
             if (scrollY > 50) {
                 const newOpacity = Math.max(1 - (scrollY / 200), 0);
                 scrollDownArrow.style.opacity = newOpacity;
@@ -91,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 scrollDownArrow.style.opacity = 0.9;
             }
             
-            // Toggle visibility class instead of constantly updating style
             if (scrollY > heroHeight / 2) {
                 if (scrollDownArrow.style.visibility !== 'hidden') {
                     scrollDownArrow.style.visibility = 'hidden';
@@ -101,9 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     scrollDownArrow.style.visibility = 'visible';
                 }
             }
-        }, { passive: true }); // Mark event as passive for better performance
+        }, { passive: true });
         
-        // Use smooth scrolling for clicking the arrow
         scrollDownArrow.addEventListener('click', () => {
             document.getElementById('about-me').scrollIntoView({behavior: 'smooth'});
         });
@@ -115,13 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
         { url: 'https://www.linkedin.com/in/cadenjfinley/', img: 'images/linkedin.png', text: 'LinkedIn' }
     ];
 
-    // Check if we're on the home page
     const isHomePage = () => {
         const path = window.location.pathname;
         return path === '/' || path === '/home' || path === '/home.html' || path.endsWith('/priv-CadenFinley.com/') || path.endsWith('/priv-CadenFinley.com/home') || path.endsWith('/priv-CadenFinley.com/home.html');
     };
 
-    // Hide header initially but keep it in the DOM flow only if on home page
     const header = document.querySelector('header');
     if (isHomePage() && document.getElementById('hero')) {
         header.style.opacity = '0';
@@ -132,12 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
         header.classList.add('header-visible');
     }
     
-    // Function to handle scroll and show/hide header
     function handleScroll() {
         const heroSection = document.getElementById('hero');
-        // Only apply hide/show logic on home page
         if (isHomePage() && heroSection) {
-            // Start showing header when scrolled 1/3 of the hero section
             const triggerPoint = heroSection.offsetHeight / 3;
             
             if (window.scrollY > triggerPoint) {
@@ -145,15 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 header.classList.add('header-visible');
             } else {
                 header.classList.remove('header-visible');
-                // Don't hide completely to allow smooth transition
             }
         }
     }
     
-    // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
     
-    // Call once to set initial state
     handleScroll();
 
     const linksContainer = document.querySelector('header .link-items');
@@ -174,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
         footerLinksContainer.appendChild(linkItem);
     });
 
-    // Create a shared toggle switch component function
     function createToggleSwitchContainer() {
         const toggleSwitchContainer = document.createElement('div');
         toggleSwitchContainer.className = 'toggle-switch-container';
@@ -194,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return { toggleSwitchContainer, toggleSwitchLabel, toggleSwitch };
     }
     
-    // Create a function to handle the toggle logic
     function handleThemeToggle(isChecked, toggleSwitchLabel) {
         document.body.classList.toggle('light-mode', isChecked);
         document.querySelectorAll('header, main, section, footer, .project-box, .contact-form, .contact-popup .form-container, .nav-menu-dropdown, .pull-out-menu').forEach(element => {
@@ -219,7 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        // Sync all toggle switches
         document.querySelectorAll('.toggle-switch input[type="checkbox"]').forEach(checkbox => {
             checkbox.checked = isChecked;
         });
@@ -295,7 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Create the scroll-to-top-right button with the same styling as nav-menu
     const scrollToTopRightButton = document.createElement('button');
     scrollToTopRightButton.className = 'scroll-to-top-right';
     scrollToTopRightButton.innerHTML = '☰';
@@ -308,7 +282,6 @@ document.addEventListener('DOMContentLoaded', () => {
     pullOutMenu.className = 'pull-out-menu';
     document.body.appendChild(pullOutMenu);
 
-    // Create a container for horizontal social media links
     const socialLinksContainer = document.createElement('div');
     socialLinksContainer.className = 'social-links-container';
     socialLinksContainer.style.display = 'flex';
@@ -325,7 +298,6 @@ document.addEventListener('DOMContentLoaded', () => {
         socialLinksContainer.appendChild(linkItem);
     });
 
-    // Create and add the toggle switch for the pull-out menu
     const { toggleSwitchContainer, toggleSwitchLabel, toggleSwitch } = createToggleSwitchContainer();
     
     toggleSwitch.querySelector('input').addEventListener('change', (e) => {
@@ -356,7 +328,6 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollToTopButton.classList.add('show');
             scrollToTopRightButton.classList.add('show');
             
-            // Update scroll-to-top-right button to match nav-menu in light mode
             if (document.body.classList.contains('light-mode')) {
                 scrollToTopRightButton.style.backgroundColor = '#ff6f61';
                 scrollToTopRightButton.style.color = '#000000';
@@ -420,7 +391,6 @@ document.addEventListener('DOMContentLoaded', () => {
         navMenu.appendChild(sectionButton);
     });
     
-    // Create a container for horizontal social media links in the nav menu dropdown
     const navSocialLinksContainer = document.createElement('div');
     navSocialLinksContainer.className = 'social-links-container';
     navSocialLinksContainer.style.display = 'flex';
@@ -429,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navSocialLinksContainer.style.margin = '1rem 0';
     navSocialLinksContainer.style.flexWrap = 'wrap';
     navMenu.appendChild(navSocialLinksContainer);
-    
+
     links.forEach(link => {
         const linkItem = document.createElement('div');
         linkItem.className = 'link-item';
@@ -437,7 +407,6 @@ document.addEventListener('DOMContentLoaded', () => {
         navSocialLinksContainer.appendChild(linkItem);
     });
     
-    // Create and add the toggle switch for the nav-menu-dropdown
     const navMenuToggle = createToggleSwitchContainer();
     
     navMenuToggle.toggleSwitch.querySelector('input').addEventListener('change', (e) => {
@@ -463,7 +432,6 @@ document.addEventListener('DOMContentLoaded', () => {
         navMenu.classList.remove('show');
     });
 
-    // Add social media buttons to the connect section
     const connectSection = document.getElementById('connect');
     if (connectSection) {
         const connectTitle = connectSection.querySelector('h2');
@@ -479,7 +447,6 @@ document.addEventListener('DOMContentLoaded', () => {
             socialLinks.appendChild(socialLink);
         });
         
-        // Insert social links next to the Connect title
         connectTitle.appendChild(socialLinks);
     }
 });
