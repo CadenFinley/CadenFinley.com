@@ -53,6 +53,7 @@ To set up the project locally, follow these steps:
 - HTML
 - CSS
 - JavaScript
+- PHP
 - [GitHub API](https://docs.github.com/en/rest)
 
 ## Authentication
