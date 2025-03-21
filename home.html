@@ -4,12 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Caden Finley</title>
+    <meta name="description" content="Caden Finley - Software Developer specializing in back-end development, scripting, data management, and system architecture.">
+    <meta name="keywords" content="Caden Finley, software developer, backend development, Python, Java, C, C++, PHP, SQL">
+    <meta name="author" content="Caden Finley">
+    
+    <!-- Open Graph meta tags for social sharing -->
+    <meta property="og:title" content="Caden Finley - Software Developer">
+    <meta property="og:description" content="Software developer specializing in back-end development, system architecture and tooling.">
+    <meta property="og:image" content="https://cadenfinley.com/images/cadenfinley.png">
+    <meta property="og:url" content="https://cadenfinley.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Caden Finley - Software Developer">
+    <meta name="twitter:description" content="Software developer specializing in back-end development, system architecture and tooling.">
+    <meta name="twitter:image" content="https://cadenfinley.com/images/cadenfinley.png">
+    
+    <!-- Canonical URL to avoid duplicate content issues -->
+    <link rel="canonical" href="https://cadenfinley.com">
+    
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="images/cadenfinleylogo.ico" type="image/x-icon">
     <style>
         body, html {
             width: 100%;
+            margin: 0;
+            padding: 0;
             overflow-x: hidden;
         }
         main {
@@ -40,6 +62,19 @@
         .logo-button .letter-j {
             color: #4682b4;
         }
+        .hero-nav-buttons {
+            margin-top: 1rem;
+        }
+        /* Remove any extra margin/padding that could cause gaps */
+        main, section {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        /* Ensure hero connects directly to content below */
+        #hero + main {
+            margin-top: 0;
+            padding-top: 2rem;
+        }
     </style>
 </head>
 <body>
@@ -49,8 +84,22 @@
         <button class="nav-menu">☰</button>
         <div class="nav-menu-dropdown"></div>
     </header>
-    <main>
+    <section id="hero">
+        <h2>Hi, I'm Caden Finley</h2>
         <img src="images/cadenfinley.png" alt="Caden Finley" class="profile-pic">
+        <p></p>
+        <div class="hero-nav-buttons">
+            <button class="hero-nav-btn" onclick="document.getElementById('about-me').scrollIntoView({behavior: 'smooth'})">About Me</button>
+            <button class="hero-nav-btn" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">Projects</button>
+            <button class="hero-nav-btn" onclick="document.getElementById('connect').scrollIntoView({behavior: 'smooth'})">Connect</button>
+        </div>
+        <div class="scroll-down-arrow">
+            <span onclick="document.getElementById('about-me').scrollIntoView({behavior: 'smooth'})">
+                <i class="arrow down"></i>
+            </span>
+        </div>
+    </section>
+    <main>
         <section id="about-me">
             <h2>About Me</h2>
             <p>Hello! My name is Caden Finley, and I strive to build and create things with purpose and intent.</p>
@@ -81,7 +130,7 @@
         <div class="container">
             <h2>Connect</h2>
             <p>Thanks for taking the time to look at my website!</p>
-            <p>I would love to get to know you, feel free to connect with me on social media or via the email form:</p>
+            <p>I would love to get to know you, feel free to connect with me on social media or via the email form or at my email: caden.finley0789@gmail.com</p>
             <p>You can find me on Instagram, GitHub, and LinkedIn. I respond to all DM's and direct inqueries on those platforms.</p>
             <p>If you prefer, you can also send me a message using the email form below. I try to respond to all emails within 24 hours.</p>
             <div class="form-group">

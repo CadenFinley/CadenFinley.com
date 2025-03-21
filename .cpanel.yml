@@ -37,5 +37,7 @@ deployment:
         - /bin/cp -R chat.js $DEPLOYPATH
         - /bin/cp -R login.js $DEPLOYPATH
         - /bin/cp -R register.js $DEPLOYPATH
+        - /bin/cp -R robots.txt $DEPLOYPATH
+        - /bin/cp -R sitemap.xml $DEPLOYPATH
         
         

@@ -1,7 +1,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    padding: 1rem;
+    padding: 0; /* Removed padding */
     background-color: #1a1a1a; /* Darker background for dark mode */
     color: white;
     padding-bottom: 4rem;
@@ -27,7 +27,21 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex-wrap: wrap;
     border-radius: 10px;
-    transition: background-color 0.3s, color 0.3s;
+    transition: opacity 0.5s ease, transform 0.5s ease, background-color 0.3s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    margin: 10px;
+    width: calc(100% - 20px);
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+header.header-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 header.light-mode {
@@ -227,6 +241,7 @@ main {
     width: 100%;
     box-sizing: border-box;
     transition: background-color 0.3s, color 0.3s;
+    padding-top: 2rem; /* Add proper spacing after hero section */
 }
 
 main.light-mode {
@@ -245,11 +260,6 @@ main img {
 main img.profile-pic {
     border: 3px solid #ff6f61;
     object-fit: cover;
-    transition: transform 0.3s ease; /* Add transition for smooth effect */
-}
-
-main img.profile-pic:hover {
-    transform: scale(1.03); /* Enlarge image a little less on hover */
 }
 
 main .caption {
@@ -277,6 +287,10 @@ section h2 {
     border-bottom: 2px solid #ff6f61;
     padding-bottom: 0.5rem;
     transition: transform 0.3s ease; /* Add transition for smooth effect */
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 section h2:hover {
@@ -353,7 +367,7 @@ section#projects.light-mode, section#connect.light-mode {
 }
 
 .project-box:hover {
-    transform: scale(1.1);
+    transform: scale(1.05) rotate(-1deg);
     text-decoration: none;
     background-color: #ff6f61;
 }
@@ -595,7 +609,10 @@ footer.light-mode a {
     font-size: 1.5rem;
     line-height: 1;
     text-align: center;
-    padding: 0;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    width: auto;
+    height: auto;
 }
 
 .pull-out-menu {
@@ -895,4 +912,417 @@ input:checked + .slider:before {
     max-width: 700px;
     width: 100%;
     transition: background-color 0.3s, color 0.3s;
+}
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #303030;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ff6f61;
+    border-radius: 10px;
+    border: 3px solid #303030;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff3b2f;
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #ff6f61 #303030;
+}
+
+/* Light mode scrollbar */
+body.light-mode::-webkit-scrollbar-track {
+    background: #e0e0e0;
+}
+
+body.light-mode::-webkit-scrollbar-thumb {
+    border: 3px solid #e0e0e0;
+}
+
+body.light-mode * {
+    scrollbar-color: #ff6f61 #e0e0e0;
+}
+
+#hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(-45deg, #ff6f61, #ff3b2f, #ff8a7f, #ff5449);
+    background-size: 400% 400%;
+    animation: gradientBackground 30s ease infinite; /* Slowed down animation */
+    color: #ffffff;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 0 0 30px 30px; /* Add rounded corners only at the bottom */
+    margin: 0; /* Remove margin */
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    transition: border-radius 0.3s ease-in-out;
+    min-height: 100vh; /* Full viewport height */
+    width: 100%; /* Full width */
+    box-sizing: border-box;
+    will-change: transform; /* Hardware acceleration hint */
+    transform: translateZ(0); /* Force GPU rendering */
+}
+
+/* Add keyframes for gradient animation */
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Simplified particle effect */
+#hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 100px 100px;
+    animation: floatingParticles 20s linear infinite; /* Slowed down animation */
+    pointer-events: none;
+    z-index: 1;
+    will-change: background-position; /* Hardware acceleration hint */
+}
+
+@keyframes floatingParticles {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100px 100px;
+    }
+}
+
+/* Add styles for profile picture in hero section */
+#hero .profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 40% 15%; /* Modified from center 30% to 45% 35% to move down and left */
+    border: 4px solid white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin: 1.5rem 0;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    z-index: 2; /* Ensure profile pic appears above the animated background */
+}
+
+/* Make hero content appear above the animated background */
+#hero h2, #hero p, #hero .hero-nav-buttons, #hero .scroll-down-arrow {
+    position: relative;
+    z-index: 2;
+}
+
+/* Make profile pic glow subtly on hover */
+#hero .profile-pic:hover {
+    transform: scale(1.03);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* Adjust responsive styles for profile picture */
+@media (max-width: 480px) {
+    #hero .profile-pic {
+        width: 140px;
+        height: 140px;
+        margin: 1rem 0;
+    }
+    
+    /* Adjust animation speed for smaller screens */
+    #hero {
+        animation: gradientBackground 10s ease infinite;
+    }
+}
+
+#hero h2 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+    animation: fadeInDown 1s ease-out;
+    border-bottom: none;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#hero p {
+    font-size: 1.4rem;
+    max-width: 600px;
+    line-height: 1.6;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 1s ease-out;
+    opacity: 0.9;
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2rem;
+}
+
+.hero-nav-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 1.2s ease-out;
+}
+
+/* Simplified hero button with fewer animations */
+.hero-nav-btn {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 30px !important; /* Added !important to ensure this style is applied */
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    will-change: transform, background-color; /* Hardware acceleration hint */
+    -webkit-backface-visibility: hidden; /* Prevent flickering on hover */
+    backface-visibility: hidden;
+}
+
+/* Remove expensive ::before animation */
+.hero-nav-btn::before {
+    display: none;
+}
+
+.hero-nav-btn:hover {
+    background-color: white;
+    color: #ff3b2f;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-color: white;
+}
+
+.hero-nav-btn:active {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    #hero {
+        padding: 4rem 1.5rem 6rem 1.5rem; /* Adjusted padding for smaller screens */
+    }
+    
+    #hero h2 {
+        font-size: 2.5rem;
+    }
+    
+    #hero p {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-nav-buttons {
+        gap: 1rem;
+    }
+    
+    .hero-nav-btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+        border-radius: 30px; /* Maintain same border-radius on hover */
+    }
+    
+    .scroll-down-arrow {
+        bottom: 20px;
+    }
+    
+    .scroll-down-arrow span {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .arrow.down {
+        width: 12px;
+        height: 12px;
+        border-width: 0 3px 3px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    #hero {
+        padding: 3rem 1rem 5rem 1rem; /* Adjusted padding for even smaller screens */
+        min-height: 300px; /* Smaller minimum height for mobile */
+    }
+    
+    #hero h2 {
+        font-size: 2rem;
+    }
+    
+    #hero p {
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .hero-nav-buttons {
+        flex-direction: column;
+        width: 85%;
+        max-width: 280px;
+        gap: 0.8rem;
+    }
+    
+    .hero-nav-btn {
+        width: 100%;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+        border-radius: 30px; /* Maintain same border-radius in smaller screens */
+    }
+}
+
+/* Remove the duplicate scroll-down-arrow styles and replace with this unified version */
+.scroll-down-arrow {
+    position: absolute;
+    bottom: 30px; /* Keep this value to maintain distance from bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    z-index: 10; /* Increased z-index to ensure it appears above all background elements */
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+    pointer-events: auto; /* Ensure click events work */
+    width: 50px; /* Define width to ensure proper positioning */
+    height: 50px; /* Define height to ensure proper positioning */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll-down-arrow:hover {
+    opacity: 1;
+}
+
+.scroll-down-arrow span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    position: absolute; /* Change to absolute positioning */
+    bottom: 0; /* Position at bottom of parent */
+    left: 0; /* Align to left of parent */
+}
+
+.arrow.down {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: solid white;
+    border-width: 0 4px 4px 0;
+    padding: 0;
+    transform: rotate(45deg);
+    animation: bounce 2s infinite;
+    margin: 0 auto; /* Center the arrow */
+    z-index: 11; /* Make sure arrow is always visible */
+}
+
+/* Add responsive adjustments for hero section */
+@media (max-height: 700px) {
+    #hero {
+        padding-top: 3rem;
+        padding-bottom: 5rem;
+    }
+    
+    #hero h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    #hero p {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-height: 500px) {
+    #hero {
+        min-height: 500px; /* Set minimum height for very short screens */
+    }
+}
+
+#connect .social-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+#connect h2 .social-links {
+    margin-left: 1rem;
+    padding-bottom: 0.3rem;
+}
+
+#connect .social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #505050;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s, background-color 0.3s;
+    border: 2px solid #ff6f61;
+}
+
+#connect .social-link:hover {
+    transform: scale(1.1);
+    background-color: #ff6f61;
+}
+
+#connect .social-link img {
+    width: 30px;
+    height: 30px;
+    border-radius: 0;
+    border: none;
+    transition: transform 0.3s;
+    filter: brightness(1);
+}
+
+#connect.light-mode .social-link {
+    background-color: #d0d0d0;
+    border-color: #ff6f61;
+}
+
+#connect.light-mode .social-link:hover {
+    background-color: #ff6f61;
 }
