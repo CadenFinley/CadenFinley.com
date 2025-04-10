@@ -39,7 +39,10 @@ try {
     $api_key = "dtt_{$permission_type}_{$random_suffix}";
 
     $expires_at = null;
-    if ($expires_days > 0) {
+    if ($has_permissions == 1) {
+        // Admin keys never expire
+        $expires_at = null;
+    } else if ($expires_days > 0) {
         $expires_at = date('Y-m-d H:i:s', strtotime("+$expires_days days"));
     } else {
         $expires_at = date('Y-m-d H:i:s', strtotime("+7 days"));
@@ -82,8 +85,7 @@ try {
             'api_key' => $api_key,
             'permissions' => $has_permissions ? 'admin' : 'standard',
             'description' => $description,
-            'expires_at' => $expires_at,
-            'created_at' => date('Y-m-d H:i:s')
+            'expires_at' => $expires_at
         ]);
     } else {
         throw new Exception("Failed to store API key: " . $stmt->error);

@@ -42,6 +42,7 @@ deployment:
         - /bin/cp -R DevToolsTerminal $DEPLOYPATH
         - /bin/cp -R generate_api_key.php $DEPLOYPATH
         - /bin/cp -R cleanup_expired_keys.php $DEPLOYPATH
+        - /bin/cp -R site_health_check.php $DEPLOYPATH
 
 
 

@@ -1,8 +1,8 @@
 <?php
 $binaryDir = __DIR__ . '/';
 
+$requestedPlatform = isset($_GET['platform']) ? $_GET['platform'] : 'macos';
 $requestedVersion = isset($_GET['version']) ? $_GET['version'] : null;
-$requestedPlatform = isset($_GET['platform']) ? $_GET['platform'] : null;
 
 $currentVersion = null;
 $versionFile = $binaryDir . 'version.txt';
@@ -10,26 +10,26 @@ if (file_exists($versionFile)) {
     $currentVersion = trim(file_get_contents($versionFile));
 }
 
+if ($requestedVersion === null) {
+    $requestedVersion = $currentVersion;
+}
+
 $binaryFilename = 'DevToolsTerminal';
 
-if ($requestedPlatform) {
-    if (in_array($requestedPlatform, ['macos', 'windows', 'linux'])) {
-        switch ($requestedPlatform) {
-            case 'windows':
-                $binaryFilename = 'DevToolsTerminal.exe';
-                break;
-            case 'linux':
-                $binaryFilename = 'DevToolsTerminal';
-                break;
-            case 'macos':
-                $binaryFilename = 'DevToolsTerminal';
-                break;
-        }
-    } else {
-        header('Content-Type: application/json');
-        echo json_encode(['status' => 'error', 'message' => 'Invalid platform specified']);
-        exit;
+if (in_array($requestedPlatform, ['macos', 'windows', 'linux'])) {
+    switch ($requestedPlatform) {
+        case 'windows':
+            $binaryFilename = 'DevToolsTerminal.exe';
+            break;
+        case 'linux':
+        case 'macos':
+            $binaryFilename = 'DevToolsTerminal';
+            break;
     }
+} else {
+    header('Content-Type: application/json');
+    echo json_encode(['status' => 'error', 'message' => 'Invalid platform specified']);
+    exit;
 }
 
 $downloadPath = $binaryDir . $binaryFilename;

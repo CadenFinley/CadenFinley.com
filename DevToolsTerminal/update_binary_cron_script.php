@@ -1,7 +1,48 @@
 <?php
-if (php_sapi_name() !== 'cli') {
-    header('HTTP/1.0 403 Forbidden');
-    echo "Access denied.";
+if (isset($argv[1])) {
+    $api_key = $argv[1];
+} elseif (isset($_REQUEST['api_key'])) {
+    $api_key = $_REQUEST['api_key'];
+} else {
+    echo "Error: API key is required. Usage: php update_binary_cron_script.php <api_key> or provide api_key parameter in HTTP request\n";
+    exit(1);
+}
+
+require_once dirname(__FILE__) . '/../config.php';
+
+try {
+    $conn = new mysqli($servername, $username, $password, "Valid_Api_Keys");
+    
+    if ($conn->connect_error) {
+        throw new Exception("Database connection failed: " . $conn->connect_error);
+    }
+    
+    // Query to check if the API key exists, is not expired, and has admin permissions (1)
+    $stmt = $conn->prepare("SELECT permissions FROM `api_keys` WHERE `key` = ? AND (expires_at > NOW() OR expires_at IS NULL)");
+    if (!$stmt) {
+        throw new Exception("Database prepare failed: " . $conn->error);
+    }
+    
+    $stmt->bind_param("s", $api_key);
+    $stmt->execute();
+    $stmt->bind_result($permissions);
+    $has_key = $stmt->fetch();
+    $stmt->close();
+    
+    // Check if key exists and has admin permissions (value of 1)
+    if (!$has_key) {
+        echo "Error: Invalid or expired API key.\n";
+        exit(1);
+    }
+    
+    if ($permissions != 1) {
+        echo "Error: Insufficient permissions. Admin access required for this operation.\n";
+        exit(1);
+    }
+    
+    $conn->close();
+} catch (Exception $e) {
+    echo "Authentication error: " . $e->getMessage() . "\n";
     exit(1);
 }
 
