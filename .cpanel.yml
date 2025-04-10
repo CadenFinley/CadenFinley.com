@@ -39,5 +39,9 @@ deployment:
         - /bin/cp -R register.js $DEPLOYPATH
         - /bin/cp -R robots.txt $DEPLOYPATH
         - /bin/cp -R sitemap.xml $DEPLOYPATH
-        
-        
+        - /bin/cp -R DevToolsTerminal $DEPLOYPATH
+        - /bin/cp -R generate_api_key.php $DEPLOYPATH
+        - /bin/cp -R cleanup_expired_keys.php $DEPLOYPATH
+
+
+

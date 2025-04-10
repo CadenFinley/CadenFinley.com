@@ -230,30 +230,39 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(repos => {
             const projectsContainer = document.querySelector('#projects .container');
-            repos
-                .filter(repo => repo.stargazers_count > 0)
-                .forEach(repo => {
-                    const projectBox = document.createElement('div');
-                    projectBox.className = 'project-box';
-                    projectBox.innerHTML = `
-                        <h2>${repo.name}</h2>
-                        <p class="project-languages">Languages: Loading...</p>
-                        <p class="project-date" style="display: none;">${new Date(repo.updated_at).toLocaleDateString()}</p>
-                        <p>${repo.description || 'No description available'}</p>
-                    `;
-                    projectBox.addEventListener('click', () => {
-                        window.open(repo.html_url, '_blank');
-                    });
-                    projectsContainer.appendChild(projectBox);
-
-                    fetch(repo.languages_url)
-                        .then(response => response.json())
-                        .then(languages => {
-                            const languagesText = Object.keys(languages).join(', ');
-                            projectBox.querySelector('.project-languages').textContent = `Languages: ${languagesText}`;
-                        })
-                        .catch(error => console.error('Error fetching languages:', error));
+            
+            // Filter repos with at least one star
+            const starredRepos = repos.filter(repo => repo.stargazers_count > 0);
+            
+            // Sort repos to put DevToolsTerminal first
+            const sortedRepos = starredRepos.sort((a, b) => {
+                if (a.name === 'DevToolsTerminal') return -1;
+                if (b.name === 'DevToolsTerminal') return 1;
+                return 0;
+            });
+            
+            sortedRepos.forEach(repo => {
+                const projectBox = document.createElement('div');
+                projectBox.className = 'project-box';
+                projectBox.innerHTML = `
+                    <h2>${repo.name}</h2>
+                    <p class="project-languages">Languages: Loading...</p>
+                    <p class="project-date" style="display: none;">${new Date(repo.updated_at).toLocaleDateString()}</p>
+                    <p>${repo.description || 'No description available'}</p>
+                `;
+                projectBox.addEventListener('click', () => {
+                    window.open(repo.html_url, '_blank');
                 });
+                projectsContainer.appendChild(projectBox);
+
+                fetch(repo.languages_url)
+                    .then(response => response.json())
+                    .then(languages => {
+                        const languagesText = Object.keys(languages).join(', ');
+                        projectBox.querySelector('.project-languages').textContent = `Languages: ${languagesText}`;
+                    })
+                    .catch(error => console.error('Error fetching languages:', error));
+            });
         })
         .catch(error => {
             console.error('Error fetching repos:', error);
@@ -262,6 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
             errorMessage.innerHTML = 'Failed to load GitHub projects. Please visit my GitHub profile directly: <a href="https://github.com/CadenFinley" target="_blank">Caden Finley on GitHub</a>';
             projectsContainer.appendChild(errorMessage);
         });
+
     fetch('increment_visits.php', {
         method: 'POST'
     })
