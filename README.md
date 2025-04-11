@@ -1,6 +1,6 @@
 # Caden Finley's Personal Website
 
-Welcome to the repository for my personal website. This website showcases my projects, education, and provides ways to connect with me. Thanks for your time!
+Welcome to the repository for my personal website. This website showcases my projects, education, and provides ways to connect with me. This also hosts my custom web chat app and api for updating my custom terminal emulator: DevToolsTerminal
 
 ## Table of Contents
 

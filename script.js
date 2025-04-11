@@ -231,15 +231,27 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(repos => {
             const projectsContainer = document.querySelector('#projects .container');
             
-            // Filter repos with at least one star
-            const starredRepos = repos.filter(repo => repo.stargazers_count > 0);
+            const pinnedRepoNames = [
+                'DevToolsTerminal',
+                'CadenFinley.com',
+                'ASCII-Adventurer',
+                'AiChatBot-OpenAI-implementation'
+            ];
             
-            // Sort repos to put DevToolsTerminal first
-            const sortedRepos = starredRepos.sort((a, b) => {
-                if (a.name === 'DevToolsTerminal') return -1;
-                if (b.name === 'DevToolsTerminal') return 1;
-                return 0;
+            // Filter to only include pinned repositories
+            const pinnedRepos = repos.filter(repo => pinnedRepoNames.includes(repo.name));
+            
+            // Sort repos to maintain the order of pinnedRepoNames
+            const sortedRepos = pinnedRepos.sort((a, b) => {
+                return pinnedRepoNames.indexOf(a.name) - pinnedRepoNames.indexOf(b.name);
             });
+            
+            if (sortedRepos.length === 0) {
+                const noReposMessage = document.createElement('p');
+                noReposMessage.textContent = 'No pinned repositories found. Please visit my GitHub profile directly.';
+                projectsContainer.appendChild(noReposMessage);
+                return;
+            }
             
             sortedRepos.forEach(repo => {
                 const projectBox = document.createElement('div');
