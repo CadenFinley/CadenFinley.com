@@ -232,10 +232,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const projectsContainer = document.querySelector('#projects .container');
             
             const pinnedRepoNames = [
-                'DevToolsTerminal',
+                'CJsShell',
                 'CadenFinley.com',
-                'ASCII-Adventurer',
-                'AiChatBot-OpenAI-implementation'
+                'ASCII-Adventurer'
             ];
             
             // Filter to only include pinned repositories
