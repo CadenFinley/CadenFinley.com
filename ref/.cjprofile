@@ -1,0 +1,3 @@
+# cjsh Configuration File
+# this file is sourced when the shell starts in login mode and is sourced after /etc/profile and ~/.profile
+# this file is the only one that is capable of handling startup args

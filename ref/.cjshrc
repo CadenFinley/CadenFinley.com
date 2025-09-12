@@ -1,0 +1,9 @@
+# cjsh Source File
+# this file is sourced when the shell starts in interactive mode
+# this is where your aliases, theme setup, enabled plugins will be stored by default.
+# Alias examples
+alias ll='ls -la'
+# theme examples
+theme load default
+# plugin examples
+# plugin example_plugin enable
