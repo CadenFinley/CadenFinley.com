@@ -6,15 +6,15 @@ export function skillsSection() {
     tag("div",
       tag("div",
         h3("Technologies & Languages"),
-        p("Python, C, C++, PHP, Java, JavaScript, Shell Scripting, HTml, CSS, SQL,Rust")
+        p(" Python, C, C++, PHP, Java, JavaScript, Shell Scripting, HTml, CSS, SQL, and Rust")
       ).att$("class", "skill-category"),
       tag("div",
         h3("Software & Tools"),
-        p("Spring Boot, Mvn, Git, Docker")
+        p(" Spring Boot, Mvn, Git, and Docker")
       ).att$("class", "skill-category"),
       tag("div",
         h3("Professional Skills"),
-        p("Inventory Management, SOP Documentation, Troubleshooting under SLAs, Leadership, Team Collaboration")
+        p(" Inventory Management, SOP Documentation, Troubleshooting under SLAs, Leadership, and Team Collaboration")
       ).att$("class", "skill-category")
     ).att$("class", "skills-grid")
   ).att$("class", "section");

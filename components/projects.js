@@ -1,4 +1,4 @@
-import { tag, a, h2, h3, p } from "../grecha.js";
+import { tag, a, h2, p } from "../grecha.js";
 
 export function projectsSection() {
   return tag("section",
@@ -9,7 +9,7 @@ export function projectsSection() {
     ).att$("class", "project-item"),
     tag("div",
       tag("h3", a("CJ's Shell (cjsh) — Custom Developer-Focused Login Shell").att$("href", "https://github.com/CadenFinley/CJsShell")),
-      p("Designed and implemented a POSIX-compatible login shell with a built-in AI assistant, plugin engine, and theme system. Developed in C++, integrated external libraries, and created automated install scripts for macOS/Linux.")
+      p("Designed and implemented a 90% POSIX-compatible login shell with a built-in AI assistant, plugin engine, and theme system. Developed in C++, integrated external libraries, and created automated install scripts for macOS/Linux.")
     ).att$("class", "project-item"),
     tag("div",
       tag("h3", a("ASCII Adventurer — CLI Text Adventure Game").att$("href", "https://github.com/CadenFinley/ASCII-Adventurer")),
