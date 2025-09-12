@@ -21,7 +21,7 @@ export function navSection() {
 
   const navEl = tag("nav",
     a("Resume").att$("href", "#"),
-    a("Projects").att$("href", "#/projects"),
+    a("Projects").att$("href", "#projects").att$("id", "projects-link"),
     toggleSwitch
   ).att$("class", "navbar");
 
@@ -36,6 +36,19 @@ export function navSection() {
           "src",
           next === "dark" ? "images/github-dark.png" : "images/github-light.png"
         );
+      }
+    });
+
+  // Add smooth scrolling for Projects link
+  navEl.querySelector("#projects-link")
+    .addEventListener("click", (e) => {
+      e.preventDefault();
+      const projectsSection = document.querySelector("#projects");
+      if (projectsSection) {
+        projectsSection.scrollIntoView({ 
+          behavior: "smooth",
+          block: "start"
+        });
       }
     });
 
