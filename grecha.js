@@ -50,7 +50,6 @@ export function router(routes) {
             hashLocation = '/';
         }
         if (!(hashLocation in routes)) {
-            // TODO(#2): make the route404 customizable in the router component
             const route404 = '/404';
             console.assert(route404 in routes);
             hashLocation = route404;
@@ -59,9 +58,12 @@ export function router(routes) {
         return result;
     };
     syncHash();
-    // TODO(#3): there is way to "destroy" an instance of the router to make it remove it's "hashchange" callback
     window.addEventListener("hashchange", syncHash);
     result.refresh = syncHash;
+    result.destroy = function() {
+        window.removeEventListener("hashchange", syncHash);
+        return this;
+    };
     return result;
 }
 
