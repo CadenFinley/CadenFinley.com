@@ -1,0 +1,22 @@
+---
+deployment:
+      tasks:
+        - export DEPLOYPATH=/home/llirhcywukjh/public_html/cadenfinley.com/
+        # Copy root level files
+        - /bin/cp -R .htaccess $DEPLOYPATH
+        - /bin/cp -R home.html $DEPLOYPATH
+        - /bin/cp -R robots.txt $DEPLOYPATH
+        - /bin/cp -R sitemap.xml $DEPLOYPATH
+        - /bin/cp -R 401.shtml $DEPLOYPATH
+        - /bin/cp -R 403.shtml $DEPLOYPATH
+        - /bin/cp -R 404.shtml $DEPLOYPATH
+        - /bin/cp -R 500.shtml $DEPLOYPATH
+        - /bin/cp -R 503.shtml $DEPLOYPATH
+        # Copy directory structures
+        - /bin/cp -R images $DEPLOYPATH
+        - /bin/cp -R home $DEPLOYPATH
+        - /bin/cp -R chat_backend $DEPLOYPATH
+        - /bin/cp -R chat_frontend $DEPLOYPATH
+
+
+

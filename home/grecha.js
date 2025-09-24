@@ -67,5 +67,4 @@ export function router(routes) {
     return result;
 }
 
-// Export all tag functions dynamically
 export const { canvas, h1, h2, h3, p, a, div, span, select, textarea } = tagFunctions;

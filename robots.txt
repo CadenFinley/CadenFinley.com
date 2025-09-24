@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Sitemap: https://cadenfinley.com/sitemap.xml
+
+# Disallow any directories you don't want indexed (uncomment if needed)
+# Disallow: /private/
+# Disallow: /admin/
+Disallow: /chat_backend/php/

@@ -2,7 +2,7 @@ import { tag, h1, h2, p, img } from "../grecha.js";
 
 export function heroSection() {
   return tag("section",
-    img("images/cadenfinley.jpeg").att$("class", "profile-picture"),
+    img("/images/cadenfinley.jpeg").att$("class", "profile-picture"),
     h1("Caden Finley"),
     h2("Software Engineering and Computer Science Student"),
     p("📍 Rowlett, TX | caden.finley0789@gmail.com"),

@@ -20,7 +20,7 @@ export function navSection() {
   ).att$("class", "theme-switch");
 
   const navEl = tag("nav",
-    a("Resume").att$("href", "#"),
+    a("Resume").att$("href", "images/Caden_Finley_resume.pdf").att$("target", "_blank"),
     a("Projects").att$("href", "#projects").att$("id", "projects-link"),
     toggleSwitch
   ).att$("class", "navbar");

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Caden Finley</title>
+    <link rel="stylesheet" href="styles/auth-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="../images/cadenfinleylogo.ico" type="image/x-icon">
+    <style>
+        .logo-button {
+            background: none;
+            border: 2px solid #ff6347;
+            border-radius: 10px;
+            padding: 0.5rem;
+            font-size: 2rem;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .logo-button .letter-c {
+            color: #ff6347;
+            margin-right: -0.2rem;
+        }
+        .logo-button .letter-j {
+            color: #4682b4;
+        }
+        .selected-user {
+            font-weight: bold;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><button onclick="window.location.href='home'" class="logo-button"><span class="letter-c">C</span><span class="letter-j">J</span></button></h1>
+        <div class="link-items"></div>
+        <div class="user-info">
+            <span id="user-name"></span>
+            <button id="logout-button" class="logout-button">Logout</button>
+        </div>
+    </header>
+    <main>
+        <div class="chat-container">
+            <div class="user-list" id="user-list">
+                <button id="new-chat" class="new-chat-button">New Chat</button>
+            </div>
+            <div class="chat-window">
+                <div class="chat-messages" id="chat-messages"></div>
+                <div class="chat-input-container">
+                    <input type="text" id="chat-input" class="chat-input" placeholder="Send a message to AI">
+                    <button id="chat-send" class="chat-button">Send</button>
+                </div>
+                <button id="clear-chat" class="clear-chat-button" style="display: block;">Clear Chat</button>
+            </div>
+        </div>
+    </main>
+    <div id="notification-container"></div>
+    <footer>
+        <p>&copy; 2025 Caden Finley</p>
+        <div class="about">
+            <p>Welcome to my personal website. Connect with me on social media:</p>
+            <div class="link-items"></div>
+            <p>You can download my resume <a href="../images/Caden_Finley_resume.pdf" target="_blank">here</a>.</p>
+        </div>
+    </footer>
+    <script src="../chat_backend/js/updateYear.js"></script>
+    <script src="../chat_backend/js/accounthandler.js"></script>
+    <script src="../chat_backend/js/chat.js"></script>
+</body>
+</html>

@@ -10,8 +10,9 @@ export function experienceSection() {
         tag("span", " • March 2023 - Present")
       ).att$("class", "job-header"),
       tag("ul",
-        tag("li", "Led groups of 10-20 campers daily, ensuring safety, engagement, and adherence to schedule"),
+        tag("li", "Led groups of 10-20 campers daily as a counselor, ensuring safety, engagement, and adherence to schedule"),
         tag("li", "Promoted to Assistant Director, overseeing camp logistics, Volunteer Organization, and Counselor training"),
+        tag("li", "Supervised 150-250 campers and coordinated 20-40 volunteers as Assistant Director"),
         tag("li", "Managed inventory of camp materials, maintained detailed documentation, and enforced safety protocols"),
         tag("li", "Developed strong time management skills while working nights and weekends in a high-responsibility role")
       )
