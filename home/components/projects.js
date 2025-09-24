@@ -83,18 +83,39 @@ async function loadProjects() {
 function createProjectElement(repo, config) {
   const projectBox = document.createElement('div');
   projectBox.className = 'project-box';
-  projectBox.innerHTML = `
+  
+  // Base content for all projects
+  let projectContent = `
     <h3><a href="${repo.html_url}" target="_blank">${config.title}</a></h3>
     <p class="project-languages">Languages: <span class="loading">Loading...</span></p>
     <p class="project-description">${config.description}</p>
+  `;
+  
+  // Add special buttons for CadenFinley.com project
+  if (repo.name === 'CadenFinley.com') {
+    projectContent += `
+      <div class="project-buttons">
+        <button class="project-button chat-button" onclick="window.open('/chat_frontend/login.html', '_blank')">
+          Try my web chat app!
+        </button>
+        <button class="project-button old-site-button" onclick="window.open('/chat_frontend/old_home.html', '_blank')">
+          Visit old website
+        </button>
+      </div>
+    `;
+  }
+  
+  projectContent += `
     <div class="project-meta">
       <span class="project-stars">⭐ ${repo.stargazers_count}</span>
       <span class="project-updated">Updated: ${new Date(repo.updated_at).toLocaleDateString()}</span>
     </div>
   `;
   
+  projectBox.innerHTML = projectContent;
+  
   projectBox.addEventListener('click', (e) => {
-    if (e.target.tagName !== 'A') {
+    if (e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON') {
       window.open(repo.html_url, '_blank');
     }
   });
