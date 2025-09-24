@@ -50,9 +50,9 @@ $_SESSION['username'] = $username;
 session_write_close();
 
 if ($username === 'admin') {
-    echo json_encode(['success' => true, 'message' => 'Login successful!', 'redirect' => '/admin']);
+    echo json_encode(['success' => true, 'message' => 'Login successful!', 'redirect' => 'admin.html']);
 } else {
-    echo json_encode(['success' => true, 'message' => 'Login successful!', 'redirect' => '/chat']);
+    echo json_encode(['success' => true, 'message' => 'Login successful!', 'redirect' => 'chat.html']);
 }
 
 $conn->close();
