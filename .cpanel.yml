@@ -15,8 +15,30 @@ deployment:
         # Copy directory structures
         - /bin/cp -R images $DEPLOYPATH
         - /bin/cp -R home $DEPLOYPATH
-        - /bin/cp -R chat_backend $DEPLOYPATH
         - /bin/cp -R chat_frontend $DEPLOYPATH
+        # Copy chat_backend but exclude config.php
+        - /bin/mkdir -p $DEPLOYPATH/chat_backend/js
+        - /bin/mkdir -p $DEPLOYPATH/chat_backend/php
+        - /bin/cp -R chat_backend/js/* $DEPLOYPATH/chat_backend/js/
+        - /bin/cp chat_backend/php/ai.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/check_message_limit.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/cleanup_expired_keys.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/clear_chat_history.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/create_new_chat.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/delete_user.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/email_config.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/generate_api_key.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/get_user_chat_instances.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/get_users.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/increment_message_count.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/increment_visits.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/load_chat_history.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/login.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/register.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/reset_message_count.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/site_health_check.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/test_openai_connection.php $DEPLOYPATH/chat_backend/php/
+        - /bin/cp chat_backend/php/update_sent_history.php $DEPLOYPATH/chat_backend/php/
 
 
 
