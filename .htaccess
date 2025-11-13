@@ -1,4 +1,4 @@
-DirectoryIndex home.html
+DirectoryIndex home.html index.html index.php
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
