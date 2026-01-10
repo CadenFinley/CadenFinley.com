@@ -10,7 +10,13 @@ const PROJECT_CONFIG = {
     title:
         'CJ\'s Shell (cjsh) — POSIX shell scripting meets modern shell features ',
     description:
-        'Built in are a POSIX shell interpreter with bash extensions, customizable keybindings, syntax highlighting, fuzzy completions, smart directory navigation, advanced history search, multiline editing, spell corrections, typeahead, and rich prompts. Everything ships in one binary with a single vendored dependency, so cjsh works out of the box on all *nix-like systems and Windows via WSL. cjsh delivers a POSIX+ experience, standard scripting semantics with an enhanced interactive layer you can dial up or down as needed.',
+        'Built in are a POSIX shell interpreter with bash extensions, customizable keybindings, syntax highlighting, fuzzy completions, smart directory navigation, advanced history search, multiline editing, spell corrections, typeahead, and rich prompts. Everything ships in one binary with a single vendored dependency, so cjsh works out of the box on all *nix-like systems and Windows via WSL. cjsh delivers a POSIX+ experience, standard scripting semantics with an enhanced interactive layer that you can fully customize. cjsh has been in development for over 1 full year now and is now my default login shell for my MacOS and Linux work stations with no fallbacks built in onto other shells.
+
+        In cjsh lies another one of my long term projects, isolcine. isocline was originally a project started by Daan Leijan ( https://github.com/daanx/isocline ) which I have now HEAVILY adapted to work within cjsh to give it its super rich interactions. cjsh is about ~50k lines of code all in, ~15k of which is now c code in the form of isocline. While I am planning on having a traditional fork of this version of isocline that I package with cjsh, at the moment this does not exist.
+
+        This project as an accompaning CI suite that covers ~1600 tests for cjsh that cover an immense multitude of things. cjsh is also packed on AUR and on homebrew for ease of installation and use. Additionally, cjsh uses CMake so it is pretty much universally buildable on all *nix systems. cjsh is also heavily documented via github pages which is accessable here: https://cadenfinley.github.io/CJsShell/
+
+        I love talking about this project and answering any and all questions about this project as it is single handedly the poject I have learned the most from and it has been my brain child for quite some time now and has taken a majority of my focus at times. So please, reach out and ask me literally anything about this project, I would love to talk about it.',
     order: 1
   },
   'ASCII-Adventurer': {
