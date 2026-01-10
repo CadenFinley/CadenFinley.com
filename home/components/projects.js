@@ -14,7 +14,7 @@ const PROJECT_CONFIG = {
         "In cjsh lies another one of my long term projects, isolcine. isocline was originally a project started by Daan Leijan ( https://github.com/daanx/isocline ) which I have now HEAVILY adapted to work within cjsh to give it its super rich interactions. cjsh is about ~50k lines of code all in, ~15k of which is now c code in the form of isocline. While I am planning on having a traditional fork of this version of isocline that I package with cjsh, at the moment this does not exist.",
         "This project as an accompaning CI suite that covers ~1600 tests for cjsh that cover an immense multitude of things. cjsh is also packed on AUR and on homebrew for ease of installation and use. Additionally, cjsh uses CMake so it is pretty much universally buildable on all *nix systems. cjsh is also heavily documented via github pages which is accessable here: https://cadenfinley.github.io/CJsShell/",
         "I love talking about this project and answering any and all questions about this project as it is single handedly the poject I have learned the most from and it has been my brain child for quite some time now and has taken a majority of my focus at times. So please, reach out and ask me literally anything about this project, I would love to talk about it."
-    ].join("\n\n"),
+    ],
     order: 1
   },
   'ASCII-Adventurer': {
@@ -99,7 +99,7 @@ function createProjectElement(repo, config) {
   let projectContent = `
     <h3><a href="${repo.html_url}" target="_blank">${config.title}</a></h3>
     <p class="project-languages">Languages: <span class="loading">Loading...</span></p>
-    <p class="project-description">${config.description}</p>
+    <div class="project-description-group"></div>
   `;
 
   // Add special buttons for CadenFinley.com project
@@ -127,6 +127,20 @@ function createProjectElement(repo, config) {
   `;
 
   projectBox.innerHTML = projectContent;
+
+  const descriptionGroup = projectBox.querySelector('.project-description-group');
+  const descriptionParagraphs = Array.isArray(config.description)
+      ? config.description
+      : [config.description];
+
+  if (descriptionGroup) {
+    descriptionParagraphs.filter(Boolean).forEach((text) => {
+      const paragraph = document.createElement('p');
+      paragraph.className = 'project-description';
+      paragraph.textContent = text;
+      descriptionGroup.appendChild(paragraph);
+    });
+  }
 
   projectBox.addEventListener('click', (e) => {
     if (e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON') {
