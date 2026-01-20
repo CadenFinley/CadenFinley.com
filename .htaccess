@@ -1,4 +1,9 @@
 DirectoryIndex home.html index.html index.php
+ErrorDocument 400 /home.html?error=400
+ErrorDocument 401 /home.html?error=401
+ErrorDocument 403 /home.html?error=403
+ErrorDocument 404 /home.html?error=404
+ErrorDocument 500 /home.html?error=500
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f

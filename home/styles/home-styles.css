@@ -53,6 +53,27 @@ body {
   color: var(--color-text);
   transition: background-color var(--transition-fast);
 }
+.error-page {
+  text-align: center;
+  padding: 4rem 0;
+}
+.error-page h1 {
+  font-size: 4rem;
+  margin: 0 0 0.5rem;
+  color: var(--color-secondary);
+}
+.error-page h2 {
+  margin: 0 0 1rem;
+  color: var(--color-secondary);
+}
+.error-page p {
+  margin: 0 auto 1.5rem;
+  max-width: 540px;
+  color: var(--color-muted);
+}
+.error-page .btn {
+  display: inline-block;
+}
 .profile-picture {
   width: 120px;
   height: 120px;
