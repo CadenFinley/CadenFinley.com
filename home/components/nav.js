@@ -40,13 +40,17 @@ export function navSection() {
     }
   });
 
-  navEl.querySelector('#projects-link').addEventListener('click', (e) => {
-    e.preventDefault();
-    const projectsSection = document.querySelector('#projects');
-    if (projectsSection) {
-      projectsSection.scrollIntoView({behavior: 'smooth', block: 'start'});
-    }
-  });
+  //   const projectsLink = navEl.querySelector('#projects-link');
+  //   if (projectsLink) {
+  //     projectsLink.addEventListener('click', (e) => {
+  //       e.preventDefault();
+  //       const projectsSection = document.querySelector('#projects');
+  //       if (projectsSection) {
+  //         projectsSection.scrollIntoView({behavior: 'smooth', block:
+  //         'start'});
+  //       }
+  //     });
+  //   }
 
   navEl.appendChild(socialSection());
 
