@@ -137,7 +137,10 @@ function createProjectElement(repo, config) {
   }
 
   projectBox.addEventListener('click', (e) => {
-    if (e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON') {
+    const isInteractive = e.target.closest('a, button');
+    const isDescription = e.target.closest('.project-description-group');
+
+    if (!isInteractive && !isDescription) {
       window.open(repo.html_url, '_blank');
     }
   });
