@@ -9,7 +9,8 @@ import {tag} from '../scripts/grecha.js';
 
 export function homePage() {
   return tag('div', navSection(), heroSection(), projectsSection(),
-             experienceSection(), educationSection(), skillsSection(),
+             experienceSection(), educationSection(),
+             //  skillsSection(),
              footerSection())
       .att$('class', 'container');
 }
