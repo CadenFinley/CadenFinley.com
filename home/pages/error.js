@@ -2,7 +2,6 @@ import {footerSection} from '../components/footer.js';
 import {navSection} from '../components/nav.js';
 import {a, div, h1, h2, p, tag} from '../scripts/grecha.js';
 
-// Reusable layout so every error view stays consistent.
 function buildErrorPage({
   code,
   title,

@@ -1,4 +1,4 @@
-import {errorRoutes} from './pages/404.js';
+import {errorRoutes} from './pages/error.js';
 import {homePage} from './pages/home.js';
 import {router} from './scripts/grecha.js';
 
