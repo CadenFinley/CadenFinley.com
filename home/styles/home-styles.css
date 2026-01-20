@@ -6,6 +6,7 @@
   --color-accent: #e1e1e1;
   --color-muted: #6b7280;
   --transition-fast: 0.25s ease-in-out;
+  --scrollbar-thumb: #000000;
 }
 :root[data-theme="dark"] {
   --color-bg: #000000;
@@ -15,6 +16,7 @@
   --color-accent: #6b7180;
   --color-muted: #a0aec0;
   --transition-fast: 0.25s ease-in-out;
+  --scrollbar-thumb: #595959;
 }
 
 body {
@@ -301,7 +303,7 @@ a:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+  background: var(--scrollbar-thumb);
   border-radius: 8px;
 }
 
