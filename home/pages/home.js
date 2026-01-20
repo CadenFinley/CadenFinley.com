@@ -1,27 +1,16 @@
-import { tag } from "../scripts/grecha.js";
-import { navSection } from "../components/nav.js";
-import { footerSection } from "../components/footer.js";
-import { heroSection } from "../components/hero.js";
+import {educationSection} from '../components/education.js';
 // import { skillsSection } from "../components/skills.js";
-import { experienceSection } from "../components/experience.js";
-import { projectsSection } from "../components/projects.js";
-import { educationSection } from "../components/education.js";
+import {experienceSection} from '../components/experience.js';
+import {footerSection} from '../components/footer.js';
+import {heroSection} from '../components/hero.js';
+import {navSection} from '../components/nav.js';
+import {projectsSection} from '../components/projects.js';
+import {tag} from '../scripts/grecha.js';
 
 export function homePage() {
-  return tag("div",
-    // top nav
-    navSection(),
-    // header section
-    heroSection(),
-    // skills section
-    //skillsSection(),
-    // experience section
-    experienceSection(),
-    // projects section
-    projectsSection(),
-    // education section
-    educationSection(),
-    // footer
-    footerSection()
-  ).att$("class", "container");
+  return tag('div', navSection(), heroSection(),
+             // skillsSection(),
+             projectsSection(), experienceSection(), educationSection(),
+             footerSection())
+      .att$('class', 'container');
 }
