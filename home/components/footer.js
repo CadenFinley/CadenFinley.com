@@ -1,4 +1,4 @@
-import { tag, p } from "../grecha.js";
+import { tag, p } from "../scripts/grecha.js";
 
 export function footerSection() {
   return tag("footer",

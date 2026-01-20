@@ -1,4 +1,4 @@
-import { tag, h2, h3 } from "../grecha.js";
+import { tag, h2, h3 } from "../scripts/grecha.js";
 
 export function experienceSection() {
   return tag("section",

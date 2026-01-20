@@ -1,4 +1,4 @@
-import { tag } from "../grecha.js";
+import { tag } from "../scripts/grecha.js";
 import { navSection } from "../components/nav.js";
 import { footerSection } from "../components/footer.js";
 import { heroSection } from "../components/hero.js";

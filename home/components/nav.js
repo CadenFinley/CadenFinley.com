@@ -1,4 +1,4 @@
-import { tag, a } from "../grecha.js";
+import { tag, a } from "../scripts/grecha.js";
 import { socialSection } from "./socialButtons.js";
 
 export function navSection() {

@@ -1,4 +1,4 @@
-import { tag, h2, h3, p } from "../grecha.js";
+import { tag, h2, h3, p } from "../scripts/grecha.js";
 
 export function skillsSection() {
   return tag("section",

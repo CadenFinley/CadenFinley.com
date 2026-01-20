@@ -1,4 +1,4 @@
-import { router,} from "./grecha.js";
+import { router,} from "./scripts/grecha.js";
 import { homePage } from "./pages/home.js";
 import { notFoundPage } from "./pages/404.js";
 

@@ -1,4 +1,4 @@
-import { a, img, div } from "../grecha.js";
+import { a, img, div } from "../scripts/grecha.js";
 
 export function socialSection() {
   const githubIcon =

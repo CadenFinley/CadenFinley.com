@@ -1,4 +1,4 @@
-import { tag, h1, h2, p, img } from "../grecha.js";
+import { tag, h1, h2, p, img } from "../scripts/grecha.js";
 
 export function heroSection() {
   return tag("section",

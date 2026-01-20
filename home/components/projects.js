@@ -1,4 +1,4 @@
-import {a, h2, p, tag} from '../grecha.js';
+import {a, h2, p, tag} from '../scripts/grecha.js';
 
 const PROJECT_CONFIG = {
   'CadenFinley.com': {
