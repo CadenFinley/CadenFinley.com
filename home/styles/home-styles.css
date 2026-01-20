@@ -270,21 +270,18 @@ a:hover {
   align-items: center;
 }
 
- /* width */
+ /* scrollbars */
 ::-webkit-scrollbar {
-  width: 20px;
+  width: 12px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
-  border-radius: 10px;
+  background: transparent;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: red;
-  border-radius: 10px;
+  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+  border-radius: 8px;
 }
 
 /* Project Buttons */
