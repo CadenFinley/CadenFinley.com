@@ -137,7 +137,7 @@ function createProjectElement(repo, config) {
     descriptionParagraphs.filter(Boolean).forEach((text) => {
       const paragraph = document.createElement('p');
       paragraph.className = 'project-description';
-      paragraph.textContent = text;
+      appendTextWithLinks(paragraph, text);
       descriptionGroup.appendChild(paragraph);
     });
   }
@@ -149,6 +149,35 @@ function createProjectElement(repo, config) {
   });
 
   return projectBox;
+}
+
+function appendTextWithLinks(element, text) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  let lastIndex = 0;
+  let match;
+
+  while ((match = urlRegex.exec(text)) !== null) {
+    const url = match[0];
+    const precedingText = text.slice(lastIndex, match.index);
+
+    if (precedingText) {
+      element.appendChild(document.createTextNode(precedingText));
+    }
+
+    const linkElement = document.createElement('a');
+    linkElement.href = url;
+    linkElement.target = '_blank';
+    linkElement.rel = 'noopener noreferrer';
+    linkElement.textContent = url;
+    element.appendChild(linkElement);
+
+    lastIndex = match.index + url.length;
+  }
+
+  const remainingText = text.slice(lastIndex);
+  if (remainingText) {
+    element.appendChild(document.createTextNode(remainingText));
+  }
 }
 
 async function loadProjectLanguages(repo, projectElement) {
