@@ -1,0 +1,13 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/llirhcywukjh/public_html/cadenfinley.com/
+    - echo "Deploying to ${DEPLOYPATH}"
+    - /bin/mkdir -p "${DEPLOYPATH}"
+    - /bin/rsync -a home.html "${DEPLOYPATH}"
+    - /bin/rsync -a .htaccess "${DEPLOYPATH}"
+    - /bin/rsync -a sitemap.xml "${DEPLOYPATH}"
+    - /bin/mkdir -p "${DEPLOYPATH}home"
+    - /bin/rsync -a home/ "${DEPLOYPATH}home/"
+    - /bin/mkdir -p "${DEPLOYPATH}images"
+    - /bin/rsync -a images/ "${DEPLOYPATH}images/"
