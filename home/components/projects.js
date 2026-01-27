@@ -3,7 +3,7 @@ import {a, h2, p, tag} from '../scripts/grecha.js';
 const PROJECT_CONFIG = {
   'CadenFinley.com': {
     title: 'CadenFinley.com - My personal website & resume',
-    description: 'My personal dev portfolio',
+    description: 'My personal dev portfolio. Previously this was a well featured very fancy looking webpage with a websocket based, databased, JWT secured web chat service. I have since removed all of this and opted for a much simpler webpage as I feel that reflects more of who I am.',
     order: 3
   },
   'CJsShell': {
