@@ -1,9 +1,13 @@
+import {communityPage} from './pages/community.js';
 import {errorRoutes} from './pages/error.js';
 import {homePage} from './pages/home.js';
+import {journeyPage} from './pages/journey.js';
 import {router} from './scripts/grecha.js';
 
 const routes = {
   '/': homePage,
+  '/co-curricular': communityPage,
+  '/acu-journey': journeyPage,
   ...errorRoutes
 };
 
