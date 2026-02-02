@@ -55,6 +55,7 @@ export function router(routes) {
             hashLocation = route404;
         }
         result.replaceChildren(routes[hashLocation]());
+        window.scrollTo({top: 0, behavior: 'auto'});
         return result;
     };
     syncHash();

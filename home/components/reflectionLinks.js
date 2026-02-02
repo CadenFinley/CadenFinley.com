@@ -12,11 +12,10 @@ export function reflectionLinksSection() {
                        buildButton('Co-curricular & Other Reflections',
                                    '#/co-curricular'),
                        buildButton('Academic & Spiritual Reflections',
-                                   '#/acu-journey', 'secondary'))
+                                   '#/acu-journey'))
                          .att$('class', 'reflection-links-buttons');
 
   return tag('section', h2('Reflections & Community'),
-             p('A deeper look at the people, practices, and formative moments that have shaped my time at ACU.'),
              buttonRow)
       .att$('class', 'section reflection-links');
 }

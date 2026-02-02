@@ -8,6 +8,9 @@ export function navSection() {
       'dark' :
       'light';
   document.documentElement.dataset.theme = saved || fallback;
+  const currentHash = window.location.hash.replace(/^#/, '');
+  const currentRoute = currentHash || '/';
+  const isHomeRoute = currentRoute === '/';
 
   const isDark = document.documentElement.dataset.theme === 'dark';
   const toggleInput = tag('input')
@@ -18,13 +21,18 @@ export function navSection() {
   const toggleSwitch =
       tag('label', toggleInput, tag('span')).att$('class', 'theme-switch');
 
-  const navEl = tag('nav',
-                    /*a('Resume')
-                      .att$('href', 'images/Caden_Finley_resume.pdf')
-                      .att$('target', '_blank'),*/
-                    /*a('Projects').att$('href', '#projects').att$('id',
-                       'projects-link'),*/
-                    toggleSwitch)
+  const centerContent = isHomeRoute ?
+      tag('div').att$('class', 'nav-center') :
+      tag('div', a('Back to Home')
+                      .att$('href', '#/')
+                      .att$('class', 'back-home-link'))
+          .att$('class', 'nav-center');
+
+  const navEl = tag(
+                   'nav',
+                   tag('div', toggleSwitch).att$('class', 'nav-left'),
+                   centerContent,
+                   tag('div', socialSection()).att$('class', 'nav-right'))
                     .att$('class', 'navbar');
 
   navEl.querySelector('#theme-toggle').addEventListener('change', (e) => {
@@ -51,8 +59,5 @@ export function navSection() {
   //       }
   //     });
   //   }
-
-  navEl.appendChild(socialSection());
-
   return navEl;
 }
