@@ -6,11 +6,11 @@ export function skillsSection() {
     tag("div",
       tag("div",
         h3("Technologies & Languages"),
-        p(" Python, C, C++, PHP, Java, JavaScript, Shell Scripting, HTml, CSS, SQL, and Rust")
+        p(" Python, C, C++, PHP, Java, JavaScript, Shell Scripting, HTML, CSS, SQL, and Rust")
       ).att$("class", "skill-category"),
       tag("div",
         h3("Software & Tools"),
-        p(" Spring Boot, Mvn, Git, and Docker")
+        p(" Spring Boot, Maven, Git, and Docker")
       ).att$("class", "skill-category"),
       tag("div",
         h3("Professional Skills"),
