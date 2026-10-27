@@ -76,6 +76,8 @@ Remove obsolete public files separately after review.
 Apache serves local error documents for HTTP 400, 401, 403, 404, 410, 500, and 503.
 Local error documents preserve the response status and work without JavaScript.
 The shared portfolio stylesheet controls their appearance.
+GoDaddy uses root-level `CODE.shtml` files for custom error responses.
+The generator creates these files for deployment.
 
 1. Edit the messages or template in `scripts/build-errors.py`.
 2. Run `python3 scripts/build-errors.py`.

@@ -37,6 +37,8 @@ def main():
         for name in ("home", "images", "errors"):
             shutil.copytree(ROOT / name, public / name)
         shutil.copy2(ROOT / "home.html", public / "home.html")
+        for code in CODES:
+            shutil.copy2(ROOT / f"{code}.shtml", public / f"{code}.shtml")
         rules = (ROOT / ".htaccess").read_text() + "\n"
         for code in CODES:
             rules += f"RewriteRule ^__status/{code}$ - [R={code},L]\n"
@@ -55,7 +57,7 @@ DefaultRuntimeDir "{directory}"
 {chr(10).join(loads)}
 DocumentRoot "{public}"
 TypesConfig "{directory / 'mime.types'}"
-AddType text/html .html
+AddType text/html .html .shtml
 AddType text/css .css
 AddType text/javascript .js
 <Directory "{public}">

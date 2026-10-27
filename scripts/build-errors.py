@@ -54,7 +54,7 @@ if __name__ == "__main__":
     parser.add_argument("--check", action="store_true", help="Check generated pages without changing files.")
     args = parser.parse_args()
     for code, (title, description) in ERRORS.items():
-        target = ROOT / "errors" / f"{code}.html"
+        target = ROOT / f"{code}.shtml"
         content = render(code, title, description)
         if args.check:
             if not target.is_file() or target.read_text() != content:
