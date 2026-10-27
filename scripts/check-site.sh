@@ -7,6 +7,10 @@ while IFS= read -r -d '' file; do
     node --input-type=module --check < "$file"
 done < <(find home -type f -name '*.js' -print0)
 
+node --check errors/theme.js
+python3 scripts/build-errors.py --check
+python3 tests/check-errors.py
+
 python3 - <<'PY'
 from pathlib import Path
 import xml.etree.ElementTree as ET

@@ -101,6 +101,9 @@ body {
 .error-page .btn {
   display: inline-block;
 }
+.error-page .error-contact {
+  margin-top: 1.5rem;
+}
 .profile-picture {
   width: 120px;
   height: 120px;

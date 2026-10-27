@@ -7,7 +7,7 @@ function buildErrorPage({
   title,
   description,
   actionLabel = 'Return Home',
-  actionHref = '#/'
+  actionHref = '/'
 }) {
   return tag('div', navSection(),
              div(h1(code), h2(title), p(description),
@@ -24,31 +24,31 @@ export const errorRoutes = {
     code: '400',
     title: 'Bad Request',
     description:
-        'Your browser sent a request we couldn\'t understand. Please verify the link and try again.'
+        'The server could not understand this request. Check the address, then try again.'
   }),
   '/401': () => buildErrorPage({
     code: '401',
     title: 'Unauthorized',
     description:
-        'This page needs authentication before you can view it. Sign in and give it another go.'
+        'This page requires authentication. Return to the homepage or contact me if you need access.'
   }),
   '/403': () => buildErrorPage({
     code: '403',
     title: 'Forbidden',
     description:
-        'You don\'t have permission to access this resource. If you think this is a mistake, reach out.'
+        'You do not have permission to access this page. Return to the homepage or contact me if you need access.'
   }),
   '/404': () => buildErrorPage({
     code: '404',
     title: 'Page Not Found',
     description:
-        'Sorry, the page you are looking for doesn\'t exist or may have been moved.'
+        'The address may be incorrect, or the page may have moved. Check the URL or return to the homepage.'
   }),
   '/500': () => buildErrorPage({
     code: '500',
     title: 'Server Error',
     description:
-        'Something went wrong on our end. We\'ll look into it right away.'
+        'The server could not complete this request. Try again later or return to the homepage.'
   })
 };
 

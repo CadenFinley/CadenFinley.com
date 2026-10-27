@@ -5,7 +5,7 @@ export function educationSection() {
     h2("Education"),
     tag("div",
       h3("Bachelor of Science in Computer Science, Software Engineering"),
-      p("Abilene Christian University • August 2023 - May 2026 (Expected)"),
+      p("Abilene Christian University • August 2023 - December 2027 (Expected)"),
       p("Currently pursuing degree with focus on software engineering and system design")
     ).att$("class", "education-item"),
     tag("div",
