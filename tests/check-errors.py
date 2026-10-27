@@ -45,6 +45,7 @@ def main():
             probe.bind(("127.0.0.1", 0))
             port = probe.getsockname()[1]
         config = directory / "httpd.conf"
+        (directory / "mime.types").write_text("")
         config.write_text(f'''ServerRoot "{directory}"
 ServerName 127.0.0.1
 Listen 127.0.0.1:{port}
@@ -53,6 +54,7 @@ ErrorLog "{directory / 'error.log'}"
 DefaultRuntimeDir "{directory}"
 {chr(10).join(loads)}
 DocumentRoot "{public}"
+TypesConfig "{directory / 'mime.types'}"
 AddType text/html .html
 AddType text/css .css
 AddType text/javascript .js
