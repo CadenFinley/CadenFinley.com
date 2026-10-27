@@ -1,20 +1,21 @@
-import {communityPage} from './pages/community.js';
 import {errorRoutes} from './pages/error.js';
 import {homePage} from './pages/home.js';
-import {journeyPage} from './pages/journey.js';
 import {router} from './scripts/grecha.js';
 
 const routes = {
   '/': homePage,
-  '/co-curricular': communityPage,
-  '/acu-journey': journeyPage,
   ...errorRoutes
 };
 
-syncHashFromQuery(routes);
+const retiredRoutes = new Set(['#/co-curricular', '#/acu-journey']);
+if (retiredRoutes.has(window.location.hash)) {
+  window.location.replace(window.location.hash.slice(1));
+} else {
+  syncHashFromQuery(routes);
 
-const r = router(routes);
-entry.appendChild(r);
+  const r = router(routes);
+  entry.appendChild(r);
+}
 
 function syncHashFromQuery(routeTable) {
   const url = new URL(window.location.href);

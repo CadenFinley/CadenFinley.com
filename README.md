@@ -13,6 +13,7 @@ The site uses HTML, CSS, and JavaScript modules. It requires no build step.
 | `home/components/` | Shared components |
 | `home/styles/` | Stylesheets |
 | `images/` | Images, icons, and resume |
+| `errors/` | Static HTTP error pages with the existing portfolio styles |
 | `.htaccess` | Apache entry page, errors, and rewrite rules |
 | `.cpanel.yml` | cPanel deployment tasks |
 
@@ -27,11 +28,11 @@ Check Apache redirects and error responses on the hosting server.
 ## Checks and contributions
 
 1. Create a branch for the change.
-2. Run `bash scripts/check-site.sh` with Node.js and Python 3 installed.
+2. Run `bash scripts/check-site.sh` with Node.js, Python 3, and Apache installed.
 3. Check the affected pages in a browser.
 4. Create a pull request into `main`.
 
-GitHub Actions checks JavaScript syntax, the sitemap XML, and whitespace.
+GitHub Actions checks JavaScript syntax, the sitemap XML, whitespace, and HTTP error responses through Apache.
 These checks do not execute the website in a browser or check external services.
 The workflow does not deploy the website.
 
@@ -64,10 +65,24 @@ A direct push to a cPanel-managed repository can deploy automatically.
 See the [cPanel deployment guide](https://docs.cpanel.net/knowledge-base/web-services/guide-to-git-deployment/).
 
 The deployment copies only the listed website files and directories.
-It does not remove old files from the destination.
+It removes the three retired reflection source files listed in `.cpanel.yml`.
+It preserves other files in the destination, including the separate `lynn` website.
 Before deployment, preserve a copy of the current website outside `public_html`.
 To restore a previous version, retrieve that commit and deploy its website files.
 Remove obsolete public files separately after review.
+
+## Error pages
+
+Apache serves local error documents for HTTP 400, 401, 403, 404, 410, 500, and 503.
+Local error documents preserve the response status and work without JavaScript.
+The shared portfolio stylesheet controls their appearance.
+
+1. Edit the messages or template in `scripts/build-errors.py`.
+2. Run `python3 scripts/build-errors.py`.
+3. Run `bash scripts/check-site.sh`.
+
+The retired `/acu-journey` and `/co-curricular` pages return HTTP 410.
+Their old hash links navigate to those paths.
 
 ## SSH access
 

@@ -1,10 +1,13 @@
 DirectoryIndex home.html index.html index.php
-ErrorDocument 400 https://cadenfinley.com/home.html?error=400
-ErrorDocument 401 https://cadenfinley.com/home.html?error=401
-ErrorDocument 403 https://cadenfinley.com/home.html?error=403
-ErrorDocument 404 https://cadenfinley.com/home.html?error=404
-ErrorDocument 500 https://cadenfinley.com/home.html?error=500
+ErrorDocument 400 /errors/400.html
+ErrorDocument 401 /errors/401.html
+ErrorDocument 403 /errors/403.html
+ErrorDocument 404 /errors/404.html
+ErrorDocument 410 /errors/410.html
+ErrorDocument 500 /errors/500.html
+ErrorDocument 503 /errors/503.html
 RewriteEngine on
+RewriteRule ^(acu-journey|co-curricular)/?$ - [G,L]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.*)$ $1.html [NC,L]

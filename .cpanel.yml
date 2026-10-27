@@ -4,9 +4,12 @@ deployment:
     - export DEPLOYPATH=/home/llirhcywukjh/public_html/cadenfinley.com/
     - /bin/mkdir -p "$DEPLOYPATH"
     # Copy root-level files present in the repo
-    - /bin/cp -R .htaccess "$DEPLOYPATH"
     - /bin/cp -R home.html "$DEPLOYPATH"
     - /bin/cp -R sitemap.xml "$DEPLOYPATH"
     # Copy directories that exist locally
     - /bin/cp -R home "$DEPLOYPATH"
     - /bin/cp -R images "$DEPLOYPATH"
+    - /bin/cp -R errors "$DEPLOYPATH"
+    - /bin/cp -R .htaccess "$DEPLOYPATH"
+    # Remove the retired reflection sources from the live website.
+    - /bin/rm -f "$DEPLOYPATH/home/pages/community.js" "$DEPLOYPATH/home/pages/journey.js" "$DEPLOYPATH/home/components/reflectionLinks.js"
