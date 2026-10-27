@@ -39,7 +39,12 @@ The workflow does not deploy the website.
 
 The existing `.cpanel.yml` copies the website to
 `/home/llirhcywukjh/public_html/cadenfinley.com/`.
-This path comes from the repository. Check it against the domain's document root in cPanel before deployment.
+The cPanel Domains page matches this document root as of October 26, 2026.
+Check the document root again if the hosting configuration changes.
+
+The cPanel repository display name is `CadenFinley.com`.
+Its repository directory is `/home/llirhcywukjh/repositories/CadenFinley.com_V2`.
+It tracks `main` from <https://github.com/CadenFinley/CadenFinley.com>.
 
 For a cPanel repository that retrieves changes from GitHub:
 
@@ -53,7 +58,7 @@ For a cPanel repository that retrieves changes from GitHub:
 8. Select **Deploy HEAD Commit**.
 9. Check <https://cadenfinley.com>.
 
-The presence of `.cpanel.yml` does not establish that a cPanel repository exists.
+The cPanel repository and deployment controls were present during the account check on October 26, 2026.
 Pushing to GitHub does not itself run these deployment tasks.
 A direct push to a cPanel-managed repository can deploy automatically.
 See the [cPanel deployment guide](https://docs.cpanel.net/knowledge-base/web-services/guide-to-git-deployment/).
