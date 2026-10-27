@@ -38,7 +38,7 @@ def main():
             shutil.copytree(ROOT / name, public / name)
         shutil.copy2(ROOT / "home.html", public / "home.html")
         for code in CODES:
-            shutil.copy2(ROOT / f"{code}.shtml", public / f"{code}.shtml")
+            shutil.copy2(ROOT / "errors" / f"{code}.html", public / f"{code}.shtml")
         rules = (ROOT / ".htaccess").read_text() + "\n"
         for code in CODES:
             rules += f"RewriteRule ^__status/{code}$ - [R={code},L]\n"

@@ -11,7 +11,7 @@ deployment:
     - /bin/cp -R images "$DEPLOYPATH"
     - /bin/cp -R errors "$DEPLOYPATH"
     # GoDaddy uses root-level .shtml files for custom error responses.
-    - /bin/cp 400.shtml 401.shtml 403.shtml 404.shtml 410.shtml 500.shtml 503.shtml "$DEPLOYPATH"
+    - for ERRORCODE in 400 401 403 404 410 500 503; do /bin/cp "errors/$ERRORCODE.html" "$DEPLOYPATH/$ERRORCODE.shtml"; done
     - /bin/cp -R .htaccess "$DEPLOYPATH"
     # Remove the retired reflection sources from the live website.
     - /bin/rm -f "$DEPLOYPATH/home/pages/community.js" "$DEPLOYPATH/home/pages/journey.js" "$DEPLOYPATH/home/components/reflectionLinks.js"
